@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://creation-sites-guillaume-dh.guillaumedh07.workers.dev/sitemap.xml
+Sitemap: https://webdesign.guillaumedh07.workers.dev/sitemap.xml
