@@ -139,6 +139,10 @@
   .lang-btn { opacity: 0.45; transition: opacity .2s ease; }
   .lang-btn.is-active { opacity: 1; }
   .lang-btn:hover { opacity: 0.8; }
+
+  /* work carousel — hide the scrollbar, scroll-snap does the rest */
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
 </style>
 </head>
 <body class="bg-ink text-white antialiased overflow-x-hidden">
@@ -349,10 +353,11 @@
         <h2 data-i18n="work.title" class="font-space text-3xl md:text-4xl font-semibold">Des projets concrets, livrés avec soin</h2>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-5">
+      <div class="relative">
+        <div id="workCarousel" class="no-scrollbar flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 scroll-pl-0">
 
         <!-- Imagine -->
-        <div class="reveal flip-card md:h-[280px]">
+        <div class="reveal flip-card snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px]">
           <div class="flip-card-inner">
             <div class="flip-card-front glass rounded-2xl p-7 flex flex-col">
               <div class="flex items-center justify-between mb-6">
@@ -378,7 +383,7 @@
         </div>
 
         <!-- TERRA -->
-        <div class="reveal flip-card md:h-[280px]">
+        <div class="reveal flip-card snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px]">
           <div class="flip-card-inner">
             <div class="flip-card-front rounded-2xl p-7 flex flex-col border border-terracotta/25 bg-gradient-to-b from-terracotta/[0.06] to-transparent">
               <div class="flex items-center justify-between mb-6">
@@ -408,7 +413,7 @@
         </div>
 
         <!-- Chaud Patate -->
-        <div class="reveal flip-card md:h-[280px]">
+        <div class="reveal flip-card snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px]">
           <div class="flip-card-inner">
             <div class="flip-card-front glass rounded-2xl p-7 flex flex-col">
               <div class="flex items-center justify-between mb-6">
@@ -447,6 +452,54 @@
           </div>
         </div>
 
+        <!-- LocaFut -->
+        <div class="reveal flip-card snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px]">
+          <div class="flip-card-inner">
+            <div class="flip-card-front glass rounded-2xl p-7 flex flex-col">
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="font-space font-semibold text-lg">LocaFut</h3>
+                <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
+                </span>
+              </div>
+              <p data-i18n="work.locafut.desc" class="text-sm text-white/55 leading-relaxed flex-1">
+                Site vitrine multilingue (FR/EN/NL) pour LocaFut, service de location de fûts en acier
+                inoxydable pour brasseries et HORECA en Belgique. Catalogue produits, présentation des
+                brasseries partenaires, formulaire de demande de devis.
+              </p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-[11px] text-white/30"><span data-i18n="work.viewCode">&lt;/&gt; voir le code</span></span>
+                <a href="https://locafut.pages.dev" target="_blank" rel="noopener noreferrer"
+                   data-i18n="work.viewSite"
+                   class="text-[11px] font-medium text-neon hover:text-white transition-colors">
+                  Voir le site →
+                </a>
+              </div>
+            </div>
+            <div class="flip-card-back glass rounded-2xl p-6 flex flex-col justify-center code-font text-[11.5px] leading-6">
+              <div><span class="text-violet-400">const</span> <span class="text-cyan-300">i18n</span> <span class="text-white/50">=</span> <span class="text-white/50">{</span></div>
+              <div class="pl-3"><span class="text-white/40">locales</span><span class="text-white/50">:</span> <span class="text-white/50">[</span><span class="text-amber-300">'fr'</span><span class="text-white/50">,</span> <span class="text-amber-300">'en'</span><span class="text-white/50">,</span> <span class="text-amber-300">'nl'</span><span class="text-white/50">],</span></div>
+              <div class="pl-3"><span class="text-white/40">defaultLocale</span><span class="text-white/50">:</span> <span class="text-amber-300">'fr'</span></div>
+              <div><span class="text-white/50">}</span></div>
+              <a href="https://locafut.pages.dev" target="_blank" rel="noopener noreferrer"
+                 data-i18n="work.viewSite"
+                 class="text-[11px] font-medium text-neon hover:text-white transition-colors mt-4">
+                Voir le site →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        </div>
+
+        <button id="workPrev" type="button" aria-label="Précédent"
+                class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full glass items-center justify-center hover:border-neon/50 hover:text-neon transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button id="workNext" type="button" aria-label="Suivant"
+                class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-9 h-9 rounded-full glass items-center justify-center hover:border-neon/50 hover:text-neon transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </div>
   </section>
@@ -626,6 +679,7 @@
       'work.terra.li2': 'Disponibilités en temps réel, prix dynamique par saison',
       'work.terra.li3': 'Admin tarifs &amp; dates bloquées',
       'work.chaudpatate.desc': 'Site vitrine pour un food-truck de patates fourrées : présentation du concept et prise de contact pour réserver le foodtruck lors d\'un événement.',
+      'work.locafut.desc': 'Site vitrine multilingue (FR/EN/NL) pour LocaFut, service de location de fûts en acier inoxydable pour brasseries et HORECA en Belgique. Catalogue produits, présentation des brasseries partenaires, formulaire de demande de devis.',
       'process.label': 'Process',
       'process.title': 'Comment ça se passe',
       'process.step1.title': '01 · Brief',
@@ -692,6 +746,7 @@
       'work.terra.li2': 'Real-time availability, dynamic seasonal pricing',
       'work.terra.li3': 'Rates &amp; blocked-dates admin',
       'work.chaudpatate.desc': 'Showcase site for a jacked-potato food truck: presenting the concept and taking bookings for events.',
+      'work.locafut.desc': 'Multilingual showcase site (FR/EN/NL) for LocaFut, a stainless steel keg rental service for breweries and HORECA businesses in Belgium. Product catalog, partner brewery showcase, quote request form.',
       'process.label': 'Process',
       'process.title': 'How it works',
       'process.step1.title': '01 · Brief',
@@ -758,6 +813,7 @@
       'work.terra.li2': 'Real-time beschikbaarheid, dynamische seizoensprijzen',
       'work.terra.li3': 'Beheer tarieven &amp; geblokkeerde data',
       'work.chaudpatate.desc': 'Vitrinesite voor een food truck met gevulde aardappelen: presentatie van het concept en contactopname om de food truck te boeken voor een evenement.',
+      'work.locafut.desc': 'Meertalige vitrinesite (FR/EN/NL) voor LocaFut, een verhuurdienst van roestvrijstalen vaten voor brouwerijen en HORECA-zaken in België. Productcatalogus, presentatie van partnerbrouwerijen, offerteaanvraagformulier.',
       'process.label': 'Verloop',
       'process.title': 'Hoe het werkt',
       'process.step1.title': '01 · Briefing',
@@ -882,6 +938,31 @@
       card.addEventListener('click', () => card.classList.toggle('flipped'));
     });
   }
+
+  // ---------- Work carousel: prev/next arrows + mouse-wheel scroll ----------
+  (function workCarouselNav() {
+    const track = document.getElementById('workCarousel');
+    const prevBtn = document.getElementById('workPrev');
+    const nextBtn = document.getElementById('workNext');
+    if (!track) return;
+
+    function step() {
+      const card = track.querySelector('.flip-card');
+      return card ? card.getBoundingClientRect().width + 20 : 380;
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    if (nextBtn) nextBtn.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+
+    // Let vertical mouse-wheel motion drive the horizontal scroll while hovering the
+    // carousel, since a trackpad/wheel naturally scrolls vertically otherwise.
+    track.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        track.scrollBy({ left: e.deltaY });
+      }
+    }, { passive: false });
+  })();
 
   document.querySelectorAll('[data-scroll]').forEach(link => {
     link.addEventListener('click', (e) => {
