@@ -105,23 +105,6 @@
   .blink-caret, #typeCaret { animation: caret-blink 0.9s step-end infinite; }
   @keyframes caret-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-  /* flip cards */
-  .flip-card { perspective: 1200px; }
-  .flip-card-inner {
-    position: relative; display: grid; height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
-  }
-  .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-  .flip-card-front, .flip-card-back {
-    grid-area: 1 / 1; height: 100%;
-    backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  }
-  .flip-card-back { transform: rotateY(180deg); }
-
   .traffic { width: 10px; height: 10px; border-radius: 50%; }
 
   .reveal { opacity: 0; transform: translateY(24px); }
@@ -356,138 +339,76 @@
       <div class="relative">
         <div id="workCarousel" class="no-scrollbar flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 scroll-pl-0">
 
-        <!-- Imagine -->
-        <div class="reveal flip-card snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px]">
-          <div class="flip-card-inner">
-            <div class="flip-card-front glass rounded-2xl p-7 flex flex-col">
-              <div class="flex items-center justify-between mb-6">
-                <h3 class="font-space font-semibold text-lg">Imagine</h3>
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
-                  <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
-                </span>
-              </div>
-              <p data-i18n="work.imagine.desc" class="text-sm text-white/55 leading-relaxed flex-1">
-                Site privé de gestion communautaire avec back-office admin, calendrier d'activités,
-                gestion des membres et galerie photo — développé avec Next.js, Tailwind et Supabase.
-              </p>
-              <span class="text-[11px] text-white/30 mt-4"><span data-i18n="work.viewCode">&lt;/&gt; voir le code</span></span>
-            </div>
-            <div class="flip-card-back glass rounded-2xl p-6 flex flex-col justify-center code-font text-[11.5px] leading-6">
-              <div><span class="text-violet-400">const</span> <span class="text-white/50">{</span> <span class="text-cyan-300">data</span> <span class="text-white/50">}</span> <span class="text-white/50">=</span> <span class="text-violet-400">await</span></div>
-              <div class="pl-3"><span class="text-cyan-300">supabase</span></div>
-              <div class="pl-3"><span class="text-white/50">.</span><span class="text-amber-300">from</span><span class="text-white/50">(</span><span class="text-amber-300">'activities'</span><span class="text-white/50">)</span></div>
-              <div class="pl-3"><span class="text-white/50">.</span><span class="text-amber-300">select</span><span class="text-white/50">(</span><span class="text-amber-300">'*'</span><span class="text-white/50">)</span></div>
-              <div class="pl-3"><span class="text-white/50">.</span><span class="text-amber-300">order</span><span class="text-white/50">(</span><span class="text-amber-300">'date'</span><span class="text-white/50">)</span></div>
-            </div>
-          </div>
-        </div>
-
         <!-- TERRA -->
-        <div class="reveal flip-card snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px]">
-          <div class="flip-card-inner">
-            <div class="flip-card-front rounded-2xl p-7 flex flex-col border border-terracotta/25 bg-gradient-to-b from-terracotta/[0.06] to-transparent">
-              <div class="flex items-center justify-between mb-6">
-                <h3 class="font-space font-semibold text-lg">TERRA</h3>
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full">
-                  <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span> <span data-i18n="work.comingSoon">Bientôt en ligne</span>
-                </span>
-              </div>
-              <p data-i18n-html="work.terra.desc" class="text-sm text-white/55 leading-relaxed mb-4">
-                Site vitrine &amp; moteur de réservation pour un domaine privé de luxe à Mallorca
-                (Campanet, Serra de Tramuntana). Design "estate de luxe" — crème, terracotta, sauge, typographie serif.
-              </p>
-              <ul class="text-[13px] text-white/45 space-y-1.5">
-                <li class="flex gap-2"><span class="text-terracotta">•</span> <span data-i18n="work.terra.li1">Multilingue FR / EN / ES / DE</span></li>
-                <li class="flex gap-2"><span class="text-terracotta">•</span> <span data-i18n="work.terra.li2">Disponibilités en temps réel, prix dynamique par saison</span></li>
-                <li class="flex gap-2"><span class="text-terracotta">•</span> <span data-i18n-html="work.terra.li3">Admin tarifs &amp; dates bloquées</span></li>
-              </ul>
-              <span class="text-[11px] text-white/30 mt-auto pt-3"><span data-i18n="work.viewCode">&lt;/&gt; voir le code</span></span>
-            </div>
-            <div class="flip-card-back rounded-2xl p-6 flex flex-col justify-center border border-terracotta/25 bg-ink code-font text-[11.5px] leading-6">
-              <div><span class="text-violet-400">function</span> <span class="text-cyan-300">calculatePrice</span><span class="text-white/50">(season, nights) {</span></div>
-              <div class="pl-3"><span class="text-violet-400">const</span> <span class="text-cyan-300">rate</span> <span class="text-white/50">=</span> <span class="text-cyan-300">SEASON_RATES</span><span class="text-white/50">[season]</span></div>
-              <div class="pl-3"><span class="text-violet-400">return</span> <span class="text-cyan-300">rate</span> <span class="text-white/50">*</span> <span class="text-cyan-300">nights</span></div>
-              <div><span class="text-white/50">}</span></div>
-            </div>
+        <div class="reveal snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px] rounded-2xl p-7 flex flex-col border border-terracotta/25 bg-gradient-to-b from-terracotta/[0.06] to-transparent">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-space font-semibold text-lg">TERRA</h3>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span> <span data-i18n="work.comingSoon">Bientôt en ligne</span>
+            </span>
           </div>
+          <p data-i18n-html="work.terra.desc" class="text-sm text-white/55 leading-relaxed mb-4">
+            Site vitrine &amp; moteur de réservation pour un domaine privé de luxe à Mallorca
+            (Campanet, Serra de Tramuntana). Design "estate de luxe" — crème, terracotta, sauge, typographie serif.
+          </p>
+          <ul class="text-[13px] text-white/45 space-y-1.5">
+            <li class="flex gap-2"><span class="text-terracotta">•</span> <span data-i18n="work.terra.li1">Multilingue FR / EN / ES / DE</span></li>
+            <li class="flex gap-2"><span class="text-terracotta">•</span> <span data-i18n="work.terra.li2">Disponibilités en temps réel, prix dynamique par saison</span></li>
+            <li class="flex gap-2"><span class="text-terracotta">•</span> <span data-i18n-html="work.terra.li3">Admin tarifs &amp; dates bloquées</span></li>
+          </ul>
         </div>
 
         <!-- Chaud Patate -->
-        <div class="reveal flip-card snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px]">
-          <div class="flip-card-inner">
-            <div class="flip-card-front glass rounded-2xl p-7 flex flex-col">
-              <div class="flex items-center justify-between mb-6">
-                <h3 class="font-space font-semibold text-lg">Chaud Patate</h3>
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
-                  <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
-                </span>
-              </div>
-              <p data-i18n="work.chaudpatate.desc" class="text-sm text-white/55 leading-relaxed flex-1">
-                Site vitrine pour un food-truck de patates fourrées : présentation du concept
-                et prise de contact pour réserver le foodtruck lors d'un événement.
-              </p>
-              <div class="flex items-center justify-between mt-4">
-                <span class="text-[11px] text-white/30"><span data-i18n="work.viewCode">&lt;/&gt; voir le code</span></span>
-                <a href="https://chaud-patate.guillaumedh07.workers.dev" target="_blank" rel="noopener noreferrer"
-                   data-i18n="work.viewSite"
-                   class="text-[11px] font-medium text-neon hover:text-white transition-colors">
-                  Voir le site →
-                </a>
-              </div>
-            </div>
-            <div class="flip-card-back glass rounded-2xl p-6 flex flex-col justify-center code-font text-[11.5px] leading-6">
-              <div><span class="text-violet-400">function</span> <span class="text-cyan-300">MenuCard</span><span class="text-white/50">({ name, price }) {</span></div>
-              <div class="pl-3"><span class="text-violet-400">return</span> <span class="text-white/50">(</span></div>
-              <div class="pl-6"><span class="text-white/50">&lt;</span><span class="text-cyan-300">div</span> <span class="text-white/40">className</span><span class="text-white/50">=</span><span class="text-amber-300">"menu-item"</span><span class="text-white/50">&gt;</span></div>
-              <div class="pl-9"><span class="text-white/70">{name} — {price}€</span></div>
-              <div class="pl-6"><span class="text-white/50">&lt;/</span><span class="text-cyan-300">div</span><span class="text-white/50">&gt;</span></div>
-              <div class="pl-3"><span class="text-white/50">)</span></div>
-              <div><span class="text-white/50">}</span></div>
-              <a href="https://chaud-patate.guillaumedh07.workers.dev" target="_blank" rel="noopener noreferrer"
-                 data-i18n="work.viewSite"
-                 class="text-[11px] font-medium text-neon hover:text-white transition-colors mt-4">
-                Voir le site →
-              </a>
-            </div>
+        <div class="reveal snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px] glass rounded-2xl p-7 flex flex-col">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-space font-semibold text-lg">Chaud Patate</h3>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
+            </span>
           </div>
+          <p data-i18n="work.chaudpatate.desc" class="text-sm text-white/55 leading-relaxed flex-1">
+            Site vitrine pour un food-truck de patates fourrées : présentation du concept
+            et prise de contact pour réserver le foodtruck lors d'un événement.
+          </p>
+          <a href="https://chaud-patate.guillaumedh07.workers.dev" target="_blank" rel="noopener noreferrer"
+             data-i18n="work.viewSite"
+             class="text-[11px] font-medium text-neon hover:text-white transition-colors mt-4 self-start">
+            Voir le site →
+          </a>
         </div>
 
         <!-- LocaFut -->
-        <div class="reveal flip-card snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px]">
-          <div class="flip-card-inner">
-            <div class="flip-card-front glass rounded-2xl p-7 flex flex-col">
-              <div class="flex items-center justify-between mb-6">
-                <h3 class="font-space font-semibold text-lg">LocaFut</h3>
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
-                  <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
-                </span>
-              </div>
-              <p data-i18n="work.locafut.desc" class="text-sm text-white/55 leading-relaxed flex-1">
-                Site vitrine multilingue (FR/EN/NL) pour LocaFut, service de location de fûts en acier
-                inoxydable pour brasseries et HORECA en Belgique. Catalogue produits, présentation des
-                brasseries partenaires, formulaire de demande de devis.
-              </p>
-              <div class="flex items-center justify-between mt-4">
-                <span class="text-[11px] text-white/30"><span data-i18n="work.viewCode">&lt;/&gt; voir le code</span></span>
-                <a href="https://locafut.pages.dev" target="_blank" rel="noopener noreferrer"
-                   data-i18n="work.viewSite"
-                   class="text-[11px] font-medium text-neon hover:text-white transition-colors">
-                  Voir le site →
-                </a>
-              </div>
-            </div>
-            <div class="flip-card-back glass rounded-2xl p-6 flex flex-col justify-center code-font text-[11.5px] leading-6">
-              <div><span class="text-violet-400">const</span> <span class="text-cyan-300">i18n</span> <span class="text-white/50">=</span> <span class="text-white/50">{</span></div>
-              <div class="pl-3"><span class="text-white/40">locales</span><span class="text-white/50">:</span> <span class="text-white/50">[</span><span class="text-amber-300">'fr'</span><span class="text-white/50">,</span> <span class="text-amber-300">'en'</span><span class="text-white/50">,</span> <span class="text-amber-300">'nl'</span><span class="text-white/50">],</span></div>
-              <div class="pl-3"><span class="text-white/40">defaultLocale</span><span class="text-white/50">:</span> <span class="text-amber-300">'fr'</span></div>
-              <div><span class="text-white/50">}</span></div>
-              <a href="https://locafut.pages.dev" target="_blank" rel="noopener noreferrer"
-                 data-i18n="work.viewSite"
-                 class="text-[11px] font-medium text-neon hover:text-white transition-colors mt-4">
-                Voir le site →
-              </a>
-            </div>
+        <div class="reveal snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px] glass rounded-2xl p-7 flex flex-col">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-space font-semibold text-lg">LocaFut</h3>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
+            </span>
           </div>
+          <p data-i18n="work.locafut.desc" class="text-sm text-white/55 leading-relaxed flex-1">
+            Site vitrine multilingue (FR/EN/NL) pour LocaFut, service de location de fûts en acier
+            inoxydable pour brasseries et HORECA en Belgique. Catalogue produits, présentation des
+            brasseries partenaires, formulaire de demande de devis.
+          </p>
+          <a href="https://locafut.pages.dev" target="_blank" rel="noopener noreferrer"
+             data-i18n="work.viewSite"
+             class="text-[11px] font-medium text-neon hover:text-white transition-colors mt-4 self-start">
+            Voir le site →
+          </a>
+        </div>
+
+        <!-- Imagine -->
+        <div class="reveal snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[280px] glass rounded-2xl p-7 flex flex-col">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-space font-semibold text-lg">Imagine</h3>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
+            </span>
+          </div>
+          <p data-i18n="work.imagine.desc" class="text-sm text-white/55 leading-relaxed flex-1">
+            Site privé de gestion communautaire avec back-office admin, calendrier d'activités,
+            gestion des membres et galerie photo — développé avec Next.js, Tailwind et Supabase.
+          </p>
         </div>
 
         </div>
@@ -671,7 +592,6 @@
       'work.title': 'Des projets concrets, livrés avec soin',
       'work.live': 'En ligne',
       'work.comingSoon': 'Bientôt en ligne',
-      'work.viewCode': '</> voir le code',
       'work.viewSite': 'Voir le site →',
       'work.imagine.desc': "Site privé de gestion communautaire avec back-office admin, calendrier d'activités, gestion des membres et galerie photo — développé avec Next.js, Tailwind et Supabase.",
       'work.terra.desc': 'Site vitrine &amp; moteur de réservation pour un domaine privé de luxe à Mallorca (Campanet, Serra de Tramuntana). Design "estate de luxe" — crème, terracotta, sauge, typographie serif.',
@@ -738,7 +658,6 @@
       'work.title': 'Real projects, delivered with care',
       'work.live': 'Live',
       'work.comingSoon': 'Coming soon',
-      'work.viewCode': '</> view the code',
       'work.viewSite': 'View the site →',
       'work.imagine.desc': 'Private community management site with an admin back-office, activity calendar, member management and photo gallery — built with Next.js, Tailwind and Supabase.',
       'work.terra.desc': 'Showcase site &amp; booking engine for a private luxury estate in Mallorca (Campanet, Serra de Tramuntana). "Luxury estate" design — cream, terracotta, sage, serif typography.',
@@ -805,7 +724,6 @@
       'work.title': 'Concrete projecten, met zorg opgeleverd',
       'work.live': 'Online',
       'work.comingSoon': 'Binnenkort online',
-      'work.viewCode': '</> bekijk de code',
       'work.viewSite': 'Bekijk de site →',
       'work.imagine.desc': 'Privé community-beheersite met admin back-office, activiteitenkalender, ledenbeheer en fotogalerij — gebouwd met Next.js, Tailwind en Supabase.',
       'work.terra.desc': 'Vitrinesite &amp; boekingsmotor voor een privé luxedomein op Mallorca (Campanet, Serra de Tramuntana). "Luxe landgoed"-design — crème, terracotta, salie, serif-typografie.',
@@ -932,13 +850,6 @@
     tick();
   })();
 
-  // ---------- Flip cards: tap-to-flip on touch, :hover handles desktop ----------
-  if (isTouch) {
-    document.querySelectorAll('.flip-card').forEach(card => {
-      card.addEventListener('click', () => card.classList.toggle('flipped'));
-    });
-  }
-
   // ---------- Work carousel: prev/next arrows + mouse-wheel scroll ----------
   (function workCarouselNav() {
     const track = document.getElementById('workCarousel');
@@ -947,7 +858,7 @@
     if (!track) return;
 
     function step() {
-      const card = track.querySelector('.flip-card');
+      const card = track.querySelector(':scope > div');
       return card ? card.getBoundingClientRect().width + 20 : 380;
     }
 
