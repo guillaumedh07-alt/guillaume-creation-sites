@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://webdesign.guillaumedh07.workers.dev/images/og-image.jpg">
 
 <!-- Favicon (inline SVG, no external file needed) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e14'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='17' font-weight='700' fill='%2300f0ff' text-anchor='middle'%3EG.%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f1012'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='17' font-weight='700' fill='%23e2b27a' text-anchor='middle'%3EG.%3C/text%3E%3C/svg%3E">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,12 +33,9 @@
     theme: {
       extend: {
         colors: {
-          ink: '#0a0e14',
-          ink2: '#0d1420',
-          neon: '#00f0ff',
-          violet: '#7c3aed',
-          terracotta: '#c17a56',
-          sauge: '#9caf88',
+          ink: '#0f1012',
+          ink2: '#16171a',
+          accent: '#e2b27a',
         },
         fontFamily: {
           space: ['"Space Grotesk"', 'sans-serif'],
@@ -58,42 +55,17 @@
 
 <style>
   :root { color-scheme: dark; }
-  html, body { background: #0a0e14; }
+  html, body { background: #0f1012; }
   body { font-family: 'Inter', sans-serif; }
   h1, h2, h3, .font-space { font-family: 'Space Grotesk', sans-serif; }
 
-  ::selection { background: #00f0ff; color: #0a0e14; }
+  ::selection { background: #e2b27a; color: #0f1012; }
 
-  /* subtle grain / vignette so the flat dark bg doesn't look cheap */
+  /* one soft warm glow at the top, nothing else */
   .bg-noise {
     position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.10), transparent 60%),
-                       radial-gradient(ellipse at 80% 100%, rgba(0,240,255,0.06), transparent 55%);
+    background-image: radial-gradient(ellipse at 50% 0%, rgba(226,178,122,0.07), transparent 60%);
   }
-
-  .glass {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .text-gradient {
-    background: linear-gradient(90deg, #ffffff 0%, #b6f9ff 45%, #00f0ff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  /* custom cursor */
-  #cursor-dot {
-    position: fixed; top: 0; left: 0; width: 10px; height: 10px;
-    margin-left: -5px; margin-top: -5px;
-    border-radius: 50%; background: #00f0ff;
-    pointer-events: none; z-index: 9999;
-    transform: translate(-100px,-100px);
-    transition: width .18s ease, height .18s ease, background .18s ease, margin .18s ease;
-    mix-blend-mode: difference;
-  }
-  @media (hover:none), (pointer:coarse) { #cursor-dot { display:none; } }
 
   .code-font { font-family: 'SFMono-Regular', Menlo, Consolas, monospace; }
 
@@ -102,15 +74,15 @@
   #codeWindow, #siteWindow { position: absolute; inset: 0; margin: auto; }
 
   .code-line { display: block; width: max-content; max-width: 100%; clip-path: inset(0 100% 0 0); }
-  .blink-caret, #typeCaret { animation: caret-blink 0.9s step-end infinite; }
+  #typeCaret { animation: caret-blink 0.9s step-end infinite; }
   @keyframes caret-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-  .traffic { width: 10px; height: 10px; border-radius: 50%; }
+  .traffic { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.18); }
 
   .reveal { opacity: 0; transform: translateY(24px); }
 
   .link-underline {
-    background-image: linear-gradient(#00f0ff, #00f0ff);
+    background-image: linear-gradient(#e2b27a, #e2b27a);
     background-position: 0 100%;
     background-repeat: no-repeat;
     background-size: 0% 1px;
@@ -119,56 +91,61 @@
   .link-underline:hover { background-size: 100% 1px; }
 
   /* language switcher */
-  .lang-btn { opacity: 0.45; transition: opacity .2s ease; }
+  .lang-btn { opacity: 0.55; transition: opacity .2s ease; }
   .lang-btn.is-active { opacity: 1; }
-  .lang-btn:hover { opacity: 0.8; }
+  .lang-btn:hover { opacity: 0.85; }
 
-  /* work carousel — hide the scrollbar, scroll-snap does the rest */
+  /* work carousel on mobile — hide the scrollbar, scroll-snap does the rest */
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  .field {
+    width: 100%; background: transparent; color: #fff;
+    border: 0; border-bottom: 1px solid rgba(255,255,255,0.18);
+    padding: 0.75rem 0; font-size: 0.95rem; outline: none;
+    transition: border-color .2s ease;
+  }
+  .field:focus { border-bottom-color: #e2b27a; }
+  .field::placeholder { color: rgba(255,255,255,0.35); }
 </style>
 </head>
 <body class="bg-ink text-white antialiased overflow-x-hidden">
 
-<div id="cursor-dot"></div>
 <div class="bg-noise"></div>
 
 <!-- ============ WHATSAPP FLOATING BUTTON ============ -->
 <a href="https://wa.me/32456115424" target="_blank" rel="noopener noreferrer"
    data-i18n-aria-label="whatsapp.aria"
    aria-label="Écrivez-moi sur WhatsApp"
-   class="group fixed bottom-6 right-6 z-[999] w-14 h-14 rounded-full bg-neon text-ink flex items-center justify-center shadow-[0_4px_24px_rgba(0,240,255,0.35)] hover:scale-110 hover:shadow-[0_4px_32px_rgba(0,240,255,0.55)] transition-all duration-300">
+   class="group fixed bottom-6 right-6 z-[999] w-14 h-14 rounded-full bg-accent text-ink flex items-center justify-center shadow-[0_4px_24px_rgba(226,178,122,0.3)] hover:scale-110 transition-transform duration-300">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.87 9.87 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.09c-.24.68-1.4 1.32-1.93 1.38-.5.06-1.03.29-3.45-.72-2.9-1.2-4.75-4.15-4.9-4.34-.14-.2-1.17-1.56-1.17-2.98 0-1.41.74-2.1 1-2.4.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2 .88 2.15.07.14.12.32.02.51-.1.2-.15.32-.29.49-.15.17-.3.38-.44.51-.14.14-.3.29-.13.57.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.14.46.12.63-.07.17-.2.72-.84.92-1.13.19-.28.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.68-.17 1.36Z"/></svg>
-  <span data-i18n="whatsapp.tooltip" class="pointer-events-none absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-ink border border-white/10 text-white/80 text-xs px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hidden sm:block">
+  <span data-i18n="whatsapp.tooltip" class="pointer-events-none absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-ink2 text-white/85 text-xs px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hidden sm:block">
     Écrivez-moi sur WhatsApp
   </span>
 </a>
 
 <!-- ============ HEADER ============ -->
-<header class="fixed top-0 left-0 w-full z-50 bg-ink/70 backdrop-blur-md border-b border-white/5">
+<header class="fixed top-0 left-0 w-full z-50 bg-ink/80 backdrop-blur-md border-b border-white/[0.06]">
   <div class="max-w-6xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
     <div class="flex items-center gap-4">
-      <a href="#top" data-scroll class="font-space font-semibold text-sm tracking-wide text-white/90 hover:text-white transition-colors">
-        Guillaume<span class="text-neon">.</span>dev
+      <a href="#top" data-scroll class="font-space font-semibold text-sm tracking-wide text-white hover:text-accent transition-colors">
+        Guillaume<span class="text-accent">.</span>dev
       </a>
-      <span class="hidden md:inline-flex items-center gap-1.5 text-[11px] text-white/45 pl-4 border-l border-white/10">
-        <span class="relative flex w-1.5 h-1.5">
-          <span class="absolute inline-flex w-full h-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
-          <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-green-400"></span>
-        </span>
+      <span class="hidden md:inline-flex items-center gap-2 text-[11px] text-white/60 pl-4 border-l border-white/10">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
         <span data-i18n="header.badge">Disponible pour de nouveaux projets</span>
       </span>
     </div>
-    <div class="flex items-center gap-4 sm:gap-5">
-      <nav id="langSwitcher" class="flex items-center gap-2.5 text-[11px] font-space font-semibold tracking-wide text-white/70" aria-label="Langue / Language / Taal">
+    <div class="flex items-center gap-5 sm:gap-6">
+      <nav id="langSwitcher" class="flex items-center gap-2.5 text-[11px] font-space font-semibold tracking-wide text-white" aria-label="Langue / Language / Taal">
         <button type="button" data-lang="fr" class="lang-btn">FR</button>
-        <span class="text-white/20">/</span>
+        <span class="text-white/25">/</span>
         <button type="button" data-lang="en" class="lang-btn">EN</button>
-        <span class="text-white/20">/</span>
+        <span class="text-white/25">/</span>
         <button type="button" data-lang="nl" class="lang-btn">NL</button>
       </nav>
       <a href="#contact" data-scroll data-i18n="header.cta"
-         class="hidden sm:inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full glass hover:border-neon/50 hover:text-neon transition-colors">
+         class="hidden sm:inline-flex items-center text-xs font-medium px-4 py-2 rounded-full border border-white/20 text-white hover:border-accent hover:text-accent transition-colors">
         Demander un devis
       </a>
     </div>
@@ -179,92 +156,79 @@
 
   <!-- ============ HERO ============ -->
   <section id="hero" class="relative">
-    <div id="heroPin" class="relative top-0 h-screen w-full flex flex-col items-center overflow-hidden">
+    <div id="heroPin" class="relative top-0 min-h-screen md:h-screen w-full flex flex-col items-center overflow-hidden">
 
       <!-- fixed text, always readable -->
       <div class="relative z-20 max-w-4xl mx-auto px-6 pt-28 md:pt-32 text-center">
-        <p data-i18n="hero.label" class="font-space text-xs md:text-sm tracking-[0.25em] uppercase text-neon/80 mb-5">
+        <p data-i18n="hero.label" class="font-space text-xs md:text-sm tracking-[0.25em] uppercase text-white/60 mb-5">
           Développeur web freelance
         </p>
-        <h1 data-i18n-html="hero.title" class="font-space text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] text-gradient">
+        <h1 data-i18n-html="hero.title" class="font-space text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] text-white">
           Je code votre site web<br class="hidden sm:block"> sur mesure
         </h1>
         <p data-i18n="hero.subtitle" class="mt-6 text-base md:text-lg text-white/70 max-w-xl mx-auto">
           Sites vitrines, plateformes avec back-office et automatisation IA — conçus et développés
           avec des technologies modernes. Flexible et réactif, je peux livrer un site fonctionnel en 72h.
         </p>
-        <p class="mt-4 font-space text-sm md:text-base text-neon/90 h-6" aria-hidden="true">
-          <span id="heroTypewriter"></span><span class="blink-caret inline-block w-[2px] h-[1em] bg-neon align-middle ml-0.5"></span>
-        </p>
-        <div class="mt-5 flex items-center justify-center">
-          <span data-i18n="hero.badge" class="inline-flex items-center gap-1.5 text-[11px] font-medium text-amber-300 bg-amber-400/10 border border-amber-300/20 px-3 py-1.5 rounded-full">
-            ⚡ Livraison possible en 72h
+        <div class="mt-6 flex items-center justify-center">
+          <span class="inline-flex items-center gap-2 text-xs font-medium text-accent border border-accent/30 px-3.5 py-1.5 rounded-full">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+            <span data-i18n="hero.badge">Livraison possible en 72h</span>
           </span>
         </div>
         <div class="mt-7 flex flex-col items-center gap-3">
           <a href="#contact" data-scroll data-i18n="hero.cta"
-             class="inline-flex items-center gap-2 bg-neon text-ink font-space font-semibold text-sm px-7 py-3.5 rounded-full hover:shadow-[0_0_30px_rgba(0,240,255,0.45)] hover:-translate-y-0.5 transition-all">
+             class="inline-flex items-center gap-2 bg-accent text-ink font-space font-semibold text-sm px-7 py-3.5 rounded-full hover:-translate-y-0.5 hover:brightness-110 transition-all">
             Demander un devis
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <p data-i18n="hero.reassurance" class="text-xs text-white/40">Premier échange gratuit, sans engagement</p>
+          <p data-i18n="hero.reassurance" class="text-xs text-white/55">Premier échange gratuit, sans engagement</p>
         </div>
       </div>
 
-      <!-- scroll-driven visual -->
+      <!-- scroll-driven visual: code, then the real site -->
       <div id="hero-visual-wrap" class="relative z-10 w-full flex-1 flex items-center justify-center px-6 pb-10">
-        <div class="relative w-full max-w-2xl h-[320px] sm:h-[380px] md:h-[420px]">
+        <div class="relative w-full max-w-2xl h-[300px] sm:h-[380px] md:h-[420px]">
 
           <!-- CODE MOCKUP -->
-          <div id="codeWindow" class="w-full h-full rounded-xl glass shadow-2xl overflow-hidden flex flex-col">
-            <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/10 bg-white/[0.02]">
-              <span class="traffic bg-red-400/70"></span>
-              <span class="traffic bg-yellow-400/70"></span>
-              <span class="traffic bg-green-400/70"></span>
-              <span class="ml-3 text-[11px] text-white/30 code-font">site.tsx</span>
+          <div id="codeWindow" class="w-full h-full rounded-xl bg-ink2 border border-white/10 shadow-2xl overflow-hidden flex flex-col">
+            <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/10">
+              <span class="traffic"></span>
+              <span class="traffic"></span>
+              <span class="traffic"></span>
+              <span class="ml-3 text-[11px] text-white/50 code-font">site.tsx</span>
             </div>
             <div class="p-5 code-font text-[12px] sm:text-[13px] leading-6 sm:leading-7">
-              <div class="code-line"><span class="text-violet-400">export</span> <span class="text-violet-400">default</span> <span class="text-violet-400">function</span> <span class="text-cyan-300">Site</span><span class="text-white/50">()</span> <span class="text-white/50">{</span></div>
-              <div class="code-line pl-4"><span class="text-violet-400">return</span> <span class="text-white/50">(</span></div>
-              <div class="code-line pl-8"><span class="text-white/50">&lt;</span><span class="text-cyan-300">Header</span> <span class="text-white/40">logo</span><span class="text-white/50">=</span><span class="text-amber-300" data-i18n="hero.mock.logo">"Marque"</span> <span class="text-white/50">/&gt;</span></div>
-              <div class="code-line pl-8"><span class="text-white/50">&lt;</span><span class="text-cyan-300">Hero</span></div>
-              <div class="code-line pl-12"><span class="text-white/40">title</span><span class="text-white/50">=</span><span class="text-amber-300" data-i18n="hero.mock.title">"Bienvenue"</span></div>
-              <div class="code-line pl-12"><span class="text-white/40">cta</span><span class="text-white/50">=</span><span class="text-amber-300" data-i18n="hero.mock.cta">"Découvrir"</span></div>
+              <div class="code-line"><span class="text-white/90">export default function</span> <span class="text-white">Site</span><span class="text-white/50">() {</span></div>
+              <div class="code-line pl-4"><span class="text-white/90">return</span> <span class="text-white/50">(</span></div>
+              <div class="code-line pl-8"><span class="text-white/50">&lt;</span><span class="text-white">Header</span> <span class="text-white/55">logo</span><span class="text-white/50">=</span><span class="text-accent" data-i18n="hero.mock.logo">"Chaud Patate"</span> <span class="text-white/50">/&gt;</span></div>
+              <div class="code-line pl-8"><span class="text-white/50">&lt;</span><span class="text-white">Hero</span></div>
+              <div class="code-line pl-12"><span class="text-white/55">title</span><span class="text-white/50">=</span><span class="text-accent" data-i18n="hero.mock.title">"Bienvenue"</span></div>
+              <div class="code-line pl-12"><span class="text-white/55">cta</span><span class="text-white/50">=</span><span class="text-accent" data-i18n="hero.mock.cta">"Découvrir"</span></div>
               <div class="code-line pl-8"><span class="text-white/50">/&gt;</span></div>
-              <div class="code-line pl-8"><span class="text-white/50">&lt;</span><span class="text-cyan-300">Footer</span> <span class="text-white/50">/&gt;</span></div>
+              <div class="code-line pl-8"><span class="text-white/50">&lt;</span><span class="text-white">Footer</span> <span class="text-white/50">/&gt;</span></div>
               <div class="code-line pl-4"><span class="text-white/50">)</span></div>
-              <div class="code-line"><span class="text-white/50">}</span><span id="typeCaret" class="inline-block w-[7px] h-[13px] bg-neon ml-1 align-text-bottom"></span></div>
+              <div class="code-line"><span class="text-white/50">}</span><span id="typeCaret" class="inline-block w-[7px] h-[13px] bg-accent ml-1 align-text-bottom"></span></div>
             </div>
           </div>
 
-          <!-- SITE MOCKUP (revealed) -->
-          <div id="siteWindow" class="w-full h-full rounded-xl glass shadow-2xl overflow-hidden flex flex-col opacity-0">
-            <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/10 bg-white/[0.02]">
-              <span class="traffic bg-red-400/70"></span>
-              <span class="traffic bg-yellow-400/70"></span>
-              <span class="traffic bg-green-400/70"></span>
-              <span class="ml-3 text-[11px] text-white/30 code-font" data-i18n="hero.mock.domain">monsite.com</span>
+          <!-- SITE MOCKUP: a real screenshot, revealed -->
+          <div id="siteWindow" class="w-full h-fit md:h-full rounded-xl bg-ink2 border border-white/10 shadow-2xl overflow-hidden flex flex-col opacity-0">
+            <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/10">
+              <span class="traffic"></span>
+              <span class="traffic"></span>
+              <span class="traffic"></span>
+              <span class="ml-3 text-[11px] text-white/50 code-font truncate">chaud-patate.guillaumedh07.workers.dev</span>
             </div>
-            <div class="flex-1 p-5 sm:p-7 flex flex-col">
-              <div class="site-nav flex items-center justify-between mb-8">
-                <div class="w-7 h-7 rounded-md bg-neon/80"></div>
-                <div class="flex gap-4">
-                  <div class="site-nav-link h-2 w-10 rounded-full bg-white/25"></div>
-                  <div class="site-nav-link h-2 w-10 rounded-full bg-white/25"></div>
-                  <div class="site-nav-link h-2 w-10 rounded-full bg-white/25"></div>
-                </div>
-              </div>
-              <div class="site-hero-title h-4 sm:h-5 w-3/4 rounded-full bg-white/70 mb-3"></div>
-              <div class="site-hero-sub h-2.5 w-1/2 rounded-full bg-white/30 mb-6"></div>
-              <div class="site-cta h-8 w-32 rounded-full bg-neon mb-7"></div>
-              <div class="site-image flex-1 rounded-lg bg-gradient-to-br from-violet/40 via-neon/20 to-transparent"></div>
+            <div class="md:flex-1 md:min-h-0">
+              <img class="site-shot w-full h-auto md:h-full object-cover object-top" src="images/work/chaud-patate.jpg" width="1200" height="612"
+                   alt="Capture d’écran du site Chaud Patate" data-i18n-alt="work.alt" data-name="Chaud Patate" decoding="async">
             </div>
           </div>
 
         </div>
       </div>
 
-      <div class="relative z-20 pb-8 flex flex-col items-center gap-2 text-white/30">
+      <div class="relative z-20 pb-8 flex flex-col items-center gap-2 text-white/50">
         <span data-i18n="hero.scroll" class="text-[10px] tracking-[0.2em] uppercase">Scroll</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </div>
@@ -272,278 +236,318 @@
   </section>
 
   <!-- ============ STACK STRIP ============ -->
-  <div class="relative z-30 bg-ink border-b border-white/5 py-6 px-6">
-    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
-      <span data-i18n="stack.label" class="text-[11px] tracking-[0.2em] uppercase text-white/30 mr-2">Stack</span>
-      <span class="font-space text-sm text-white/45 hover:text-neon transition-colors">Next.js</span>
-      <span class="font-space text-sm text-white/45 hover:text-neon transition-colors">Tailwind CSS</span>
-      <span class="font-space text-sm text-white/45 hover:text-neon transition-colors">Supabase</span>
-      <span class="font-space text-sm text-white/45 hover:text-neon transition-colors">Claude</span>
+  <div class="relative z-30 bg-ink border-y border-white/[0.06] py-5 px-6">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-10 gap-y-2">
+      <span data-i18n="stack.label" class="text-[11px] tracking-[0.2em] uppercase text-white/55 mr-2">Stack</span>
+      <span class="font-space text-sm text-white/70">Next.js</span>
+      <span class="font-space text-sm text-white/70">Tailwind CSS</span>
+      <span class="font-space text-sm text-white/70">Supabase</span>
+      <span class="font-space text-sm text-white/70">Claude</span>
     </div>
   </div>
 
-  <!-- ============ SERVICES ============ -->
-  <section id="services" class="relative z-30 bg-ink py-28 md:py-36 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="reveal max-w-xl mb-16">
-        <p data-i18n="services.label" class="font-space text-xs tracking-[0.25em] uppercase text-neon/80 mb-4">Services</p>
-        <h2 data-i18n="services.title" class="font-space text-3xl md:text-4xl font-semibold">Ce que je construis pour vous</h2>
+  <!-- ============ SERVICES — title left, list right ============ -->
+  <section id="services" class="relative z-30 bg-ink py-32 md:py-44 px-6">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-14 lg:gap-8">
+
+      <div class="reveal lg:col-span-4">
+        <div class="lg:sticky lg:top-32">
+          <p data-i18n="services.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">Services</p>
+          <h2 data-i18n="services.title" class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Ce que je construis pour vous</h2>
+        </div>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-
-        <div class="reveal group glass rounded-2xl p-7 hover:border-neon/40 hover:-translate-y-1 transition-all duration-300">
-          <div class="w-11 h-11 rounded-xl bg-neon/10 flex items-center justify-center mb-6 text-neon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+      <ol class="lg:col-span-7 lg:col-start-6 divide-y divide-white/10 border-y border-white/10">
+        <li class="reveal py-9 md:py-10 grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr] gap-x-4">
+          <span class="font-space text-sm text-white/45 pt-1.5">01</span>
+          <div>
+            <h3 data-i18n="services.s1.title" class="font-space text-xl md:text-2xl font-semibold mb-3">Sites vitrines multilingues</h3>
+            <p data-i18n="services.s1.desc" class="text-[15px] text-white/65 leading-relaxed max-w-lg">Présenter votre activité, vos produits ou votre lieu en plusieurs langues, avec un formulaire de contact ou de demande de devis.</p>
           </div>
-          <h3 data-i18n="services.showcase.title" class="font-space font-semibold text-base mb-2">Sites vitrines sur mesure</h3>
-          <p data-i18n="services.showcase.desc" class="text-sm text-white/60 leading-relaxed">Un design épuré et rapide, taillé pour convertir et qui vous ressemble vraiment.</p>
+        </li>
+        <li class="reveal py-9 md:py-10 grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr] gap-x-4">
+          <span class="font-space text-sm text-white/45 pt-1.5">02</span>
+          <div>
+            <h3 data-i18n="services.s2.title" class="font-space text-xl md:text-2xl font-semibold mb-3">Réservation et demandes en ligne</h3>
+            <p data-i18n="services.s2.desc" class="text-[15px] text-white/65 leading-relaxed max-w-lg">Calendrier de disponibilités, demande de réservation, formulaire de devis : ce qu’il faut à vos visiteurs pour passer à l’action.</p>
+          </div>
+        </li>
+        <li class="reveal py-9 md:py-10 grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr] gap-x-4">
+          <span class="font-space text-sm text-white/45 pt-1.5">03</span>
+          <div>
+            <h3 data-i18n="services.s3.title" class="font-space text-xl md:text-2xl font-semibold mb-3">Back-office et espaces privés</h3>
+            <p data-i18n="services.s3.desc" class="text-[15px] text-white/65 leading-relaxed max-w-lg">Un espace réservé à vos membres ou clients, et une interface pour gérer vous-même calendrier, photos, documents et inscriptions.</p>
+          </div>
+        </li>
+        <li class="reveal py-9 md:py-10 grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr] gap-x-4">
+          <span class="font-space text-sm text-white/45 pt-1.5">04</span>
+          <div>
+            <h3 data-i18n="services.s4.title" class="font-space text-xl md:text-2xl font-semibold mb-3">Applications web et automatisation</h3>
+            <p data-i18n="services.s4.desc" class="text-[15px] text-white/65 leading-relaxed max-w-lg">Applications installables sur téléphone, et automatisations avec Claude et n8n pour retirer les tâches répétitives de votre quotidien.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ RÉALISATIONS — full-width band, grid on desktop, swipe on mobile ============ -->
+  <section id="work" class="relative py-32 md:py-44 bg-ink2">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal max-w-2xl mb-16 md:mb-20">
+        <p data-i18n="work.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">Réalisations</p>
+        <h2 data-i18n="work.title" class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Des projets concrets, livrés avec soin</h2>
+      </div>
+
+      <div id="workGrid" class="no-scrollbar -mx-6 px-6 scroll-px-6 md:mx-0 md:px-0 md:scroll-px-0 flex gap-5 overflow-x-auto snap-x snap-mandatory md:snap-none md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-8 md:gap-y-16">
+
+        <!-- 1. TERRA — featured, full row on desktop -->
+        <a href="https://terra-mallorca.com" target="_blank" rel="noopener noreferrer"
+           class="group snap-start shrink-0 w-[82%] sm:w-[60%] md:w-auto md:col-span-2 lg:col-span-3 flex flex-col lg:flex-row lg:items-center lg:gap-14">
+          <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-[16/10] lg:w-[58%] lg:shrink-0">
+            <img src="images/work/terra.jpg" width="1200" height="612" loading="lazy" decoding="async"
+                 alt="Capture d’écran du site TERRA" data-i18n-alt="work.alt" data-name="TERRA"
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+          </div>
+          <div class="pt-5 lg:pt-0">
+            <h3 class="font-space text-2xl lg:text-4xl font-semibold">TERRA</h3>
+            <p data-i18n="work.terra.desc" class="mt-3 text-[15px] lg:text-lg text-white/65 leading-relaxed max-w-md">Domaine privé de 50 hectares à Campanet, Mallorca. Site vitrine multilingue (ES/EN/FR/DE) et réservation.</p>
+            <span data-i18n="work.viewSite" class="mt-5 inline-block text-sm font-medium text-white group-hover:text-accent transition-colors">Voir le site ↗</span>
+          </div>
+        </a>
+
+        <!-- 2. Top Flop -->
+        <a href="https://topflop.pages.dev" target="_blank" rel="noopener noreferrer"
+           class="group snap-start shrink-0 w-[82%] sm:w-[60%] md:w-auto flex flex-col">
+          <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-[16/10]">
+            <img src="images/work/top-flop.jpg" width="1200" height="612" loading="lazy" decoding="async"
+                 alt="Capture d’écran du site Top Flop" data-i18n-alt="work.alt" data-name="Top Flop"
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+          </div>
+          <div class="pt-5">
+            <div class="flex items-baseline justify-between gap-3">
+              <h3 class="font-space text-xl font-semibold">Top Flop</h3>
+              <span data-i18n="work.viewSite" class="text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap">Voir le site ↗</span>
+            </div>
+            <p data-i18n="work.topflop.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Web app installable : une équipe vote le top et le flop après chaque match, classement sur la saison. Sans compte, pensée mobile d’abord.</p>
+          </div>
+        </a>
+
+        <!-- 3. Chaud Patate -->
+        <a href="https://chaud-patate.guillaumedh07.workers.dev" target="_blank" rel="noopener noreferrer"
+           class="group snap-start shrink-0 w-[82%] sm:w-[60%] md:w-auto flex flex-col">
+          <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-[16/10]">
+            <img src="images/work/chaud-patate.jpg" width="1200" height="612" loading="lazy" decoding="async"
+                 alt="Capture d’écran du site Chaud Patate" data-i18n-alt="work.alt" data-name="Chaud Patate"
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+          </div>
+          <div class="pt-5">
+            <div class="flex items-baseline justify-between gap-3">
+              <h3 class="font-space text-xl font-semibold">Chaud Patate</h3>
+              <span data-i18n="work.viewSite" class="text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap">Voir le site ↗</span>
+            </div>
+            <p data-i18n="work.chaudpatate.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Site vitrine d’un food truck de patates fourrées à Bierges. FR/EN/NL, réservation du truck pour événements.</p>
+          </div>
+        </a>
+
+        <!-- 4. Playlist — private, no link -->
+        <div class="snap-start shrink-0 w-[82%] sm:w-[60%] md:w-auto flex flex-col">
+          <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-[16/10]">
+            <img src="images/work/playlist.jpg" width="1200" height="612" loading="lazy" decoding="async"
+                 alt="Capture d’écran du site Playlist" data-i18n-alt="work.alt" data-name="Playlist"
+                 class="w-full h-full object-cover">
+          </div>
+          <div class="pt-5">
+            <div class="flex items-baseline justify-between gap-3">
+              <h3 class="font-space text-xl font-semibold">Playlist</h3>
+              <span class="inline-flex items-center gap-1.5 text-xs text-white/65 whitespace-nowrap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                <span data-i18n="work.private">Projet privé</span>
+              </span>
+            </div>
+            <p data-i18n="work.playlist.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Site d’un groupe d’activités pour jeunes : membres, calendrier, photos, documents, inscriptions.</p>
+          </div>
         </div>
 
-        <div class="reveal group glass rounded-2xl p-7 hover:border-neon/40 hover:-translate-y-1 transition-all duration-300">
-          <div class="w-11 h-11 rounded-xl bg-neon/10 flex items-center justify-center mb-6 text-neon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
+        <!-- 5. EREN -->
+        <a href="https://erenenergystorage.be" target="_blank" rel="noopener noreferrer"
+           class="group snap-start shrink-0 w-[82%] sm:w-[60%] md:w-auto flex flex-col">
+          <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-[16/10]">
+            <img src="images/work/eren.jpg" width="1200" height="612" loading="lazy" decoding="async"
+                 alt="Capture d’écran du site EREN Energy Storage" data-i18n-alt="work.alt" data-name="EREN Energy Storage"
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
           </div>
-          <h3 data-i18n="services.backoffice.title" class="font-space font-semibold text-base mb-2">Sites avec back-office</h3>
-          <p data-i18n="services.backoffice.desc" class="text-sm text-white/60 leading-relaxed">Gérez votre contenu vous-même, sans jamais toucher au code.</p>
-        </div>
+          <div class="pt-5">
+            <div class="flex items-baseline justify-between gap-3">
+              <h3 class="font-space text-xl font-semibold">EREN Energy Storage</h3>
+              <span data-i18n="work.viewSite" class="text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap">Voir le site ↗</span>
+            </div>
+            <p data-i18n="work.eren.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Site d’une société de batteries industrielles : installation, cofinancement, gestion. Multilingue, avec espace client.</p>
+          </div>
+        </a>
 
-        <div class="reveal group glass rounded-2xl p-7 hover:border-neon/40 hover:-translate-y-1 transition-all duration-300">
-          <div class="w-11 h-11 rounded-xl bg-neon/10 flex items-center justify-center mb-6 text-neon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2 2M16.4 16.4l2 2M18.4 5.6l-2 2M7.6 16.4l-2 2"/><circle cx="12" cy="12" r="3.5"/></svg>
+        <!-- 6. LocaFût -->
+        <a href="https://locafut.be" target="_blank" rel="noopener noreferrer"
+           class="group snap-start shrink-0 w-[82%] sm:w-[60%] md:w-auto flex flex-col">
+          <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-[16/10]">
+            <img src="images/work/locafut.jpg" width="1200" height="612" loading="lazy" decoding="async"
+                 alt="Capture d’écran du site LocaFût" data-i18n-alt="work.alt" data-name="LocaFût"
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
           </div>
-          <h3 data-i18n-html="services.ai.title" class="font-space font-semibold text-base mb-2">Automatisation &amp; IA</h3>
-          <p data-i18n="services.ai.desc" class="text-sm text-white/60 leading-relaxed">Claude, n8n : je fais gagner de vraies heures à votre quotidien.</p>
-        </div>
+          <div class="pt-5">
+            <div class="flex items-baseline justify-between gap-3">
+              <h3 class="font-space text-xl font-semibold">LocaFût</h3>
+              <span data-i18n="work.viewSite" class="text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap">Voir le site ↗</span>
+            </div>
+            <p data-i18n="work.locafut.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Location de fûts inox pour brasseries et HORECA en Belgique. FR/EN/NL, catalogue et demande de devis.</p>
+          </div>
+        </a>
 
-        <div class="reveal group glass rounded-2xl p-7 hover:border-neon/40 hover:-translate-y-1 transition-all duration-300">
-          <div class="w-11 h-11 rounded-xl bg-neon/10 flex items-center justify-center mb-6 text-neon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>
+        <!-- 7. Imagine — private, no link -->
+        <div class="snap-start shrink-0 w-[82%] sm:w-[60%] md:w-auto flex flex-col">
+          <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-[16/10]">
+            <img src="images/work/imagine.jpg" width="1200" height="612" loading="lazy" decoding="async"
+                 alt="Capture d’écran du site Imagine" data-i18n-alt="work.alt" data-name="Imagine"
+                 class="w-full h-full object-cover">
           </div>
-          <h3 data-i18n="services.fast.title" class="font-space font-semibold text-base mb-2">Livré en 72h</h3>
-          <p data-i18n="services.fast.desc" class="text-sm text-white/60 leading-relaxed">Une stack moderne et légère pour être en ligne vite, sans exploser le budget.</p>
+          <div class="pt-5">
+            <div class="flex items-baseline justify-between gap-3">
+              <h3 class="font-space text-xl font-semibold">Imagine</h3>
+              <span class="inline-flex items-center gap-1.5 text-xs text-white/65 whitespace-nowrap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                <span data-i18n="work.private">Projet privé</span>
+              </span>
+            </div>
+            <p data-i18n="work.imagine.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Plateforme communautaire privée avec back-office : membres, calendrier, galerie, documents. Next.js, Tailwind, Supabase.</p>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ============ RÉALISATIONS ============ -->
-  <section id="work" class="relative py-28 md:py-36 px-6 bg-ink2/40">
-    <div class="max-w-6xl mx-auto">
-      <div class="reveal max-w-xl mb-16">
-        <p data-i18n="work.label" class="font-space text-xs tracking-[0.25em] uppercase text-neon/80 mb-4">Réalisations</p>
-        <h2 data-i18n="work.title" class="font-space text-3xl md:text-4xl font-semibold">Des projets concrets, livrés avec soin</h2>
+  <!-- ============ À PROPOS — portrait left, text right ============ -->
+  <section id="about" class="relative py-32 md:py-44 px-6">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-12 md:gap-10 items-center">
+
+      <div class="reveal md:col-span-5 lg:col-span-4">
+        <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-square max-w-sm mx-auto md:max-w-none">
+          <img src="images/guillaume.jpg" width="800" height="800" loading="lazy" decoding="async"
+               alt="Portrait de Guillaume de Hollain" data-i18n-alt="about.alt"
+               class="w-full h-full object-cover">
+        </div>
       </div>
 
-      <div class="relative">
-        <div id="workCarousel" class="no-scrollbar flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 scroll-pl-0">
+      <div class="reveal md:col-span-7 lg:col-span-7 lg:col-start-6">
+        <p data-i18n="about.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">À propos</p>
+        <h2 class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Guillaume de Hollain</h2>
+        <p data-i18n="hero.label" class="mt-3 text-white/65">Développeur web freelance</p>
 
-        <!-- TERRA -->
-        <div class="reveal snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[320px] rounded-2xl p-7 flex flex-col border border-terracotta/25 bg-gradient-to-b from-terracotta/[0.06] to-transparent">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="font-space font-semibold text-lg">TERRA</h3>
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full">
-              <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span> <span data-i18n="work.comingSoon">Bientôt en ligne</span>
-            </span>
-          </div>
-          <p data-i18n-html="work.terra.desc" class="text-sm text-white/55 leading-relaxed mb-4">
-            Site vitrine &amp; moteur de réservation pour un domaine privé de luxe à Mallorca
-            (Campanet, Serra de Tramuntana). Design "estate de luxe" — crème, terracotta, sauge, typographie serif.
-          </p>
-          <ul class="text-[13px] text-white/45 space-y-1.5">
-            <li class="flex gap-2"><span class="text-terracotta">•</span> <span data-i18n="work.terra.li1">Multilingue FR / EN / ES / DE</span></li>
-            <li class="flex gap-2"><span class="text-terracotta">•</span> <span data-i18n="work.terra.li2">Disponibilités en temps réel, prix dynamique par saison</span></li>
-            <li class="flex gap-2"><span class="text-terracotta">•</span> <span data-i18n-html="work.terra.li3">Admin tarifs &amp; dates bloquées</span></li>
-          </ul>
-        </div>
-
-        <!-- Chaud Patate -->
-        <div class="reveal snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[320px] glass rounded-2xl p-7 flex flex-col">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="font-space font-semibold text-lg">Chaud Patate</h3>
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
-              <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
-            </span>
-          </div>
-          <p data-i18n="work.chaudpatate.desc" class="text-sm text-white/55 leading-relaxed flex-1">
-            Site vitrine pour un food-truck de patates fourrées : présentation du concept
-            et prise de contact pour réserver le foodtruck lors d'un événement.
-          </p>
-          <a href="https://chaud-patate.guillaumedh07.workers.dev" target="_blank" rel="noopener noreferrer"
-             data-i18n="work.viewSite"
-             class="text-[11px] font-medium text-neon hover:text-white transition-colors mt-4 self-start">
-            Voir le site →
-          </a>
-        </div>
-
-        <!-- LocaFut -->
-        <div class="reveal snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[320px] glass rounded-2xl p-7 flex flex-col">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="font-space font-semibold text-lg">LocaFut</h3>
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
-              <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
-            </span>
-          </div>
-          <p data-i18n="work.locafut.desc" class="text-sm text-white/55 leading-relaxed flex-1">
-            Site vitrine multilingue (FR/EN/NL) pour LocaFut, service de location de fûts en acier
-            inoxydable pour brasseries et HORECA en Belgique. Catalogue produits, présentation des
-            brasseries partenaires, formulaire de demande de devis.
-          </p>
-          <a href="https://locafut.pages.dev" target="_blank" rel="noopener noreferrer"
-             data-i18n="work.viewSite"
-             class="text-[11px] font-medium text-neon hover:text-white transition-colors mt-4 self-start">
-            Voir le site →
-          </a>
-        </div>
-
-        <!-- Imagine -->
-        <div class="reveal snap-start shrink-0 w-[85%] sm:w-[360px] md:h-[320px] glass rounded-2xl p-7 flex flex-col">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="font-space font-semibold text-lg">Imagine</h3>
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-green-300 bg-green-400/10 px-2.5 py-1 rounded-full">
-              <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> <span data-i18n="work.live">En ligne</span>
-            </span>
-          </div>
-          <p data-i18n="work.imagine.desc" class="text-sm text-white/55 leading-relaxed flex-1">
-            Site privé de gestion communautaire avec back-office admin, calendrier d'activités,
-            gestion des membres et galerie photo — développé avec Next.js, Tailwind et Supabase.
+        <!-- PLACEHOLDER: to be replaced by Guillaume's own text -->
+        <div class="mt-10 border-2 border-dashed border-accent rounded-lg p-6 md:p-8 bg-accent/[0.06]">
+          <p data-i18n="about.placeholder" class="font-space text-base md:text-lg font-semibold text-accent leading-relaxed">
+            À RÉDIGER : emplacement du texte de présentation. Écrivez ici qui vous êtes et comment vous travaillez.
           </p>
         </div>
-
-        </div>
-
-        <button id="workPrev" type="button" aria-label="Précédent"
-                class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full glass items-center justify-center hover:border-neon/50 hover:text-neon transition-colors">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button id="workNext" type="button" aria-label="Suivant"
-                class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-9 h-9 rounded-full glass items-center justify-center hover:border-neon/50 hover:text-neon transition-colors">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
       </div>
     </div>
   </section>
 
-  <!-- ============ PROCESS ============ -->
-  <section id="process" class="relative py-28 md:py-36 px-6">
+  <!-- ============ PROCESS — four steps in a row ============ -->
+  <section id="process" class="relative py-32 md:py-44 px-6 bg-ink2">
     <div class="max-w-6xl mx-auto">
-      <div class="reveal max-w-xl mb-20">
-        <p data-i18n="process.label" class="font-space text-xs tracking-[0.25em] uppercase text-neon/80 mb-4">Process</p>
-        <h2 data-i18n="process.title" class="font-space text-3xl md:text-4xl font-semibold">Comment ça se passe</h2>
+      <div class="reveal max-w-2xl mb-16 md:mb-24">
+        <p data-i18n="process.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">Process</p>
+        <h2 data-i18n="process.title" class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Comment ça se passe</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-0 relative">
-        <div class="hidden lg:block absolute top-6 left-0 right-0 h-px bg-white/10"></div>
-
-        <div class="reveal relative lg:px-6">
-          <div class="w-12 h-12 rounded-full bg-ink border border-neon/40 text-neon flex items-center justify-center mb-6 relative z-10">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h3 data-i18n="process.step1.title" class="font-space font-semibold mb-2">01 · Brief</h3>
-          <p data-i18n="process.step1.desc" class="text-sm text-white/50 leading-relaxed">On cadre vos besoins, votre cible et vos objectifs.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-14">
+        <div class="reveal border-t border-white/20 pt-6">
+          <p class="font-space text-5xl font-semibold text-white/25 mb-6">01</p>
+          <h3 data-i18n="process.step1.title" class="font-space text-xl font-semibold mb-3">Cadrage</h3>
+          <p data-i18n="process.step1.desc" class="text-[15px] text-white/65 leading-relaxed">On définit les pages, les langues, ce que vos visiteurs doivent pouvoir faire (contacter, réserver, s’inscrire) et ce que vous voulez modifier vous-même.</p>
         </div>
-
-        <div class="reveal relative lg:px-6">
-          <div class="w-12 h-12 rounded-full bg-ink border border-neon/40 text-neon flex items-center justify-center mb-6 relative z-10">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.5-.7 1.5-1.5 0-.4-.2-.8-.4-1-.3-.3-.4-.6-.4-1 0-.8.7-1.5 1.5-1.5H16c3.3 0 6-2.7 6-6 0-4.9-4.5-9-10-9z"/></svg>
-          </div>
-          <h3 data-i18n="process.step2.title" class="font-space font-semibold mb-2">02 · Design</h3>
-          <p data-i18n="process.step2.desc" class="text-sm text-white/50 leading-relaxed">Maquette et direction artistique adaptées à votre image.</p>
+        <div class="reveal border-t border-white/20 pt-6">
+          <p class="font-space text-5xl font-semibold text-white/25 mb-6">02</p>
+          <h3 data-i18n="process.step2.title" class="font-space text-xl font-semibold mb-3">Maquette</h3>
+          <p data-i18n="process.step2.desc" class="text-[15px] text-white/65 leading-relaxed">Je vous montre la direction visuelle (couleurs, typographie, structure des pages) avant de coder. Vous validez, ou on ajuste.</p>
         </div>
-
-        <div class="reveal relative lg:px-6">
-          <div class="w-12 h-12 rounded-full bg-ink border border-neon/40 text-neon flex items-center justify-center mb-6 relative z-10">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 5l-2 14"/></svg>
-          </div>
-          <h3 data-i18n="process.step3.title" class="font-space font-semibold mb-2">03 · Développement</h3>
-          <p data-i18n="process.step3.desc" class="text-sm text-white/50 leading-relaxed">Intégration soignée, code propre, technos modernes.</p>
+        <div class="reveal border-t border-white/20 pt-6">
+          <p class="font-space text-5xl font-semibold text-white/25 mb-6">03</p>
+          <h3 data-i18n="process.step3.title" class="font-space text-xl font-semibold mb-3">Développement</h3>
+          <p data-i18n="process.step3.desc" class="text-[15px] text-white/65 leading-relaxed">Je construis le site : textes dans chaque langue, formulaires, réservation ou back-office si besoin, affichage soigné sur mobile comme sur ordinateur.</p>
         </div>
-
-        <div class="reveal relative lg:px-6">
-          <div class="w-12 h-12 rounded-full bg-ink border border-neon/40 text-neon flex items-center justify-center mb-6 relative z-10">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>
-          </div>
-          <h3 data-i18n="process.step4.title" class="font-space font-semibold mb-2">04 · Mise en ligne</h3>
-          <p data-i18n="process.step4.desc" class="text-sm text-white/50 leading-relaxed">Déploiement, vérifications, et votre site est prêt.</p>
+        <div class="reveal border-t border-white/20 pt-6">
+          <p class="font-space text-5xl font-semibold text-white/25 mb-6">04</p>
+          <h3 data-i18n="process.step4.title" class="font-space text-xl font-semibold mb-3">Mise en ligne</h3>
+          <p data-i18n="process.step4.desc" class="text-[15px] text-white/65 leading-relaxed">Je publie le site, je relie votre nom de domaine, puis je teste les formulaires et l’affichage avant de vous le remettre.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ CONTACT ============ -->
-  <section id="contact" class="relative py-28 md:py-36 px-6 bg-ink2/40">
-    <div class="max-w-5xl mx-auto">
-      <div class="reveal max-w-xl mb-16">
-        <p data-i18n="contact.label" class="font-space text-xs tracking-[0.25em] uppercase text-neon/80 mb-4">Contact</p>
-        <h2 data-i18n="contact.title" class="font-space text-3xl md:text-4xl font-semibold">Discutons de votre projet</h2>
-        <p data-i18n="contact.subtitle" class="mt-4 text-white/55">Décrivez votre besoin, je reviens vers vous rapidement avec un devis.</p>
-      </div>
+  <section id="contact" class="relative py-32 md:py-44 px-6">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-14 lg:gap-8">
 
-      <div class="grid lg:grid-cols-5 gap-10 lg:gap-16">
+      <!-- direct contact -->
+      <div class="reveal lg:col-span-5">
+        <p data-i18n="contact.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">Contact</p>
+        <h2 data-i18n="contact.title" class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Discutons de votre projet</h2>
+        <p data-i18n="contact.subtitle" class="mt-5 text-white/65 max-w-sm">Décrivez votre besoin, je reviens vers vous rapidement avec un devis.</p>
 
-        <!-- direct contact -->
-        <div class="reveal lg:col-span-2 flex flex-col gap-6">
-          <a href="tel:+32456115424" class="group flex items-center gap-4 glass rounded-xl p-5 hover:border-neon/40 transition-colors">
-            <div class="w-10 h-10 rounded-lg bg-neon/10 flex items-center justify-center text-neon shrink-0">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
+        <div class="mt-12 border-t border-white/10">
+          <a href="tel:+32456115424" class="group flex items-center justify-between py-5 border-b border-white/10">
             <div>
-              <p data-i18n="contact.phone" class="text-xs text-white/40 mb-0.5">Téléphone</p>
-              <p class="font-space text-sm font-medium group-hover:text-neon transition-colors">+32 456 115 424</p>
+              <p data-i18n="contact.phone" class="text-xs text-white/55 mb-1">Téléphone</p>
+              <p class="font-space text-lg group-hover:text-accent transition-colors">+32 456 115 424</p>
             </div>
+            <svg class="text-white/40 group-hover:text-accent transition-colors" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </a>
-
-          <a href="mailto:guillaumedh07@gmail.com" class="group flex items-center gap-4 glass rounded-xl p-5 hover:border-neon/40 transition-colors">
-            <div class="w-10 h-10 rounded-lg bg-neon/10 flex items-center justify-center text-neon shrink-0">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
-            </div>
+          <a href="mailto:guillaumedh07@gmail.com" class="group flex items-center justify-between py-5 border-b border-white/10">
             <div>
-              <p data-i18n="contact.email" class="text-xs text-white/40 mb-0.5">Email</p>
-              <p class="font-space text-sm font-medium group-hover:text-neon transition-colors break-all">guillaumedh07@gmail.com</p>
+              <p data-i18n="contact.email" class="text-xs text-white/55 mb-1">Email</p>
+              <p class="font-space text-lg group-hover:text-accent transition-colors break-all">guillaumedh07@gmail.com</p>
             </div>
-          </a>
-
-          <a href="https://www.linkedin.com/in/guillaume-de-hollain-25683a38a/" target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-2 text-xs text-white/40 hover:text-neon transition-colors mt-1 ml-1">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"/></svg>
-            LinkedIn
+            <svg class="text-white/40 group-hover:text-accent transition-colors shrink-0 ml-3" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </a>
         </div>
 
-        <!-- form -->
-        <form id="contactForm" class="reveal lg:col-span-3 flex flex-col gap-4"
-              action="https://api.web3forms.com/submit" method="POST">
-
-          <input type="hidden" name="access_key" value="1b486f29-cef2-4bc2-832b-a45219bb79c9">
-          <input type="hidden" name="subject" value="Nouvelle demande de devis — site web">
-          <input type="checkbox" name="botcheck" class="hidden" style="display:none">
-
-          <div>
-            <label data-i18n="form.name" class="text-xs text-white/40 mb-1.5 block">Nom</label>
-            <input required type="text" name="name" data-i18n-placeholder="form.namePh" placeholder="Votre nom"
-                   class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-neon/50 transition-colors placeholder:text-white/25">
-          </div>
-          <div>
-            <label data-i18n="form.email" class="text-xs text-white/40 mb-1.5 block">Email</label>
-            <input required type="email" name="email" placeholder="vous@exemple.com"
-                   class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-neon/50 transition-colors placeholder:text-white/25">
-          </div>
-          <div>
-            <label data-i18n="form.message" class="text-xs text-white/40 mb-1.5 block">Message</label>
-            <textarea required name="message" rows="4" data-i18n-placeholder="form.messagePh" placeholder="Décrivez votre projet..."
-                      class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-neon/50 transition-colors placeholder:text-white/25 resize-none"></textarea>
-          </div>
-
-          <button type="submit"
-                  class="mt-2 inline-flex items-center justify-center gap-2 bg-neon text-ink font-space font-semibold text-sm px-6 py-3.5 rounded-full hover:shadow-[0_0_30px_rgba(0,240,255,0.45)] transition-all">
-            <span id="formBtnLabel" data-i18n="form.submit">Envoyer la demande</span>
-          </button>
-
-          <p id="formStatus" class="text-xs mt-1 hidden"></p>
-        </form>
-
+        <a href="https://www.linkedin.com/in/guillaume-de-hollain-25683a38a/" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 text-sm text-white/65 hover:text-accent transition-colors mt-6">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"/></svg>
+          LinkedIn
+        </a>
       </div>
+
+      <!-- form -->
+      <form id="contactForm" class="reveal lg:col-span-6 lg:col-start-7 flex flex-col gap-7 lg:pt-14"
+            action="https://api.web3forms.com/submit" method="POST">
+
+        <input type="hidden" name="access_key" value="1b486f29-cef2-4bc2-832b-a45219bb79c9">
+        <input type="hidden" name="subject" value="Nouvelle demande de devis — site web">
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+
+        <div>
+          <label data-i18n="form.name" for="f-name" class="text-xs text-white/60 block">Nom</label>
+          <input id="f-name" required type="text" name="name" data-i18n-placeholder="form.namePh" placeholder="Votre nom" class="field">
+        </div>
+        <div>
+          <label data-i18n="form.email" for="f-email" class="text-xs text-white/60 block">Email</label>
+          <input id="f-email" required type="email" name="email" placeholder="vous@exemple.com" class="field">
+        </div>
+        <div>
+          <label data-i18n="form.message" for="f-message" class="text-xs text-white/60 block">Message</label>
+          <textarea id="f-message" required name="message" rows="4" data-i18n-placeholder="form.messagePh" placeholder="Décrivez votre projet..." class="field resize-none"></textarea>
+        </div>
+
+        <button type="submit"
+                class="self-start mt-2 inline-flex items-center justify-center bg-accent text-ink font-space font-semibold text-sm px-8 py-3.5 rounded-full hover:-translate-y-0.5 hover:brightness-110 transition-all">
+          <span id="formBtnLabel" data-i18n="form.submit">Envoyer la demande</span>
+        </button>
+
+        <p id="formStatus" class="text-xs hidden"></p>
+      </form>
+
     </div>
   </section>
 
@@ -551,9 +555,9 @@
 
 <!-- ============ FOOTER ============ -->
 <footer class="relative z-10 px-6 py-10 border-t border-white/10">
-  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/35">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/55">
     <p>&copy; <span id="year"></span> Guillaume de Hollain</p>
-    <a href="#top" data-scroll data-i18n="footer.top" class="link-underline hover:text-white/70 transition-colors">Retour en haut ↑</a>
+    <a href="#top" data-scroll data-i18n="footer.top" class="link-underline hover:text-white transition-colors">Retour en haut ↑</a>
   </div>
 </footer>
 
@@ -568,48 +572,49 @@
       'hero.label': 'Développeur web freelance',
       'hero.title': 'Je code votre site web<br class="hidden sm:block"> sur mesure',
       'hero.subtitle': 'Sites vitrines, plateformes avec back-office et automatisation IA — conçus et développés avec des technologies modernes. Flexible et réactif, je peux livrer un site fonctionnel en 72h.',
-      'hero.badge': '⚡ Livraison possible en 72h',
+      'hero.badge': 'Livraison possible en 72h',
       'hero.cta': 'Demander un devis',
       'hero.reassurance': 'Premier échange gratuit, sans engagement',
       'hero.scroll': 'Scroll',
-      'hero.mock.logo': '"Marque"',
+      'hero.mock.logo': '"Chaud Patate"',
       'hero.mock.title': '"Bienvenue"',
       'hero.mock.cta': '"Découvrir"',
-      'hero.mock.domain': 'monsite.com',
-      'hero.typewriter': ['Sites vitrines sur mesure.', 'Sites avec back-office.', 'Automatisation & IA.', 'Livré en 72h.'],
       'stack.label': 'Stack',
       'services.label': 'Services',
       'services.title': 'Ce que je construis pour vous',
-      'services.showcase.title': 'Sites vitrines sur mesure',
-      'services.showcase.desc': 'Un design épuré et rapide, taillé pour convertir et qui vous ressemble vraiment.',
-      'services.backoffice.title': 'Sites avec back-office',
-      'services.backoffice.desc': 'Gérez votre contenu vous-même, sans jamais toucher au code.',
-      'services.ai.title': 'Automatisation &amp; IA',
-      'services.ai.desc': 'Claude, n8n : je fais gagner de vraies heures à votre quotidien.',
-      'services.fast.title': 'Livré en 72h',
-      'services.fast.desc': 'Une stack moderne et légère pour être en ligne vite, sans exploser le budget.',
+      'services.s1.title': 'Sites vitrines multilingues',
+      'services.s1.desc': 'Présenter votre activité, vos produits ou votre lieu en plusieurs langues, avec un formulaire de contact ou de demande de devis.',
+      'services.s2.title': 'Réservation et demandes en ligne',
+      'services.s2.desc': 'Calendrier de disponibilités, demande de réservation, formulaire de devis : ce qu’il faut à vos visiteurs pour passer à l’action.',
+      'services.s3.title': 'Back-office et espaces privés',
+      'services.s3.desc': 'Un espace réservé à vos membres ou clients, et une interface pour gérer vous-même calendrier, photos, documents et inscriptions.',
+      'services.s4.title': 'Applications web et automatisation',
+      'services.s4.desc': 'Applications installables sur téléphone, et automatisations avec Claude et n8n pour retirer les tâches répétitives de votre quotidien.',
       'work.label': 'Réalisations',
       'work.title': 'Des projets concrets, livrés avec soin',
-      'work.live': 'En ligne',
-      'work.comingSoon': 'Bientôt en ligne',
-      'work.viewSite': 'Voir le site →',
-      'work.imagine.desc': "Site privé de gestion communautaire avec back-office admin, calendrier d'activités, gestion des membres et galerie photo — développé avec Next.js, Tailwind et Supabase.",
-      'work.terra.desc': 'Site vitrine &amp; moteur de réservation pour un domaine privé de luxe à Mallorca (Campanet, Serra de Tramuntana). Design "estate de luxe" — crème, terracotta, sauge, typographie serif.',
-      'work.terra.li1': 'Multilingue FR / EN / ES / DE',
-      'work.terra.li2': 'Disponibilités en temps réel, prix dynamique par saison',
-      'work.terra.li3': 'Admin tarifs &amp; dates bloquées',
-      'work.chaudpatate.desc': 'Site vitrine pour un food-truck de patates fourrées : présentation du concept et prise de contact pour réserver le foodtruck lors d\'un événement.',
-      'work.locafut.desc': 'Site vitrine multilingue (FR/EN/NL) pour LocaFut, service de location de fûts en acier inoxydable pour brasseries et HORECA en Belgique. Catalogue produits, présentation des brasseries partenaires, formulaire de demande de devis.',
+      'work.viewSite': 'Voir le site ↗',
+      'work.private': 'Projet privé',
+      'work.alt': 'Capture d’écran du site {name}',
+      'work.terra.desc': 'Domaine privé de 50 hectares à Campanet, Mallorca. Site vitrine multilingue (ES/EN/FR/DE) et réservation.',
+      'work.topflop.desc': 'Web app installable : une équipe vote le top et le flop après chaque match, classement sur la saison. Sans compte, pensée mobile d’abord.',
+      'work.chaudpatate.desc': 'Site vitrine d’un food truck de patates fourrées à Bierges. FR/EN/NL, réservation du truck pour événements.',
+      'work.playlist.desc': 'Site d’un groupe d’activités pour jeunes : membres, calendrier, photos, documents, inscriptions.',
+      'work.eren.desc': 'Site d’une société de batteries industrielles : installation, cofinancement, gestion. Multilingue, avec espace client.',
+      'work.locafut.desc': 'Location de fûts inox pour brasseries et HORECA en Belgique. FR/EN/NL, catalogue et demande de devis.',
+      'work.imagine.desc': 'Plateforme communautaire privée avec back-office : membres, calendrier, galerie, documents. Next.js, Tailwind, Supabase.',
+      'about.label': 'À propos',
+      'about.alt': 'Portrait de Guillaume de Hollain',
+      'about.placeholder': 'À RÉDIGER : emplacement du texte de présentation. Écrivez ici qui vous êtes et comment vous travaillez.',
       'process.label': 'Process',
       'process.title': 'Comment ça se passe',
-      'process.step1.title': '01 · Brief',
-      'process.step1.desc': 'On cadre vos besoins, votre cible et vos objectifs.',
-      'process.step2.title': '02 · Design',
-      'process.step2.desc': 'Maquette et direction artistique adaptées à votre image.',
-      'process.step3.title': '03 · Développement',
-      'process.step3.desc': 'Intégration soignée, code propre, technos modernes.',
-      'process.step4.title': '04 · Mise en ligne',
-      'process.step4.desc': 'Déploiement, vérifications, et votre site est prêt.',
+      'process.step1.title': 'Cadrage',
+      'process.step1.desc': 'On définit les pages, les langues, ce que vos visiteurs doivent pouvoir faire (contacter, réserver, s’inscrire) et ce que vous voulez modifier vous-même.',
+      'process.step2.title': 'Maquette',
+      'process.step2.desc': 'Je vous montre la direction visuelle (couleurs, typographie, structure des pages) avant de coder. Vous validez, ou on ajuste.',
+      'process.step3.title': 'Développement',
+      'process.step3.desc': 'Je construis le site : textes dans chaque langue, formulaires, réservation ou back-office si besoin, affichage soigné sur mobile comme sur ordinateur.',
+      'process.step4.title': 'Mise en ligne',
+      'process.step4.desc': 'Je publie le site, je relie votre nom de domaine, puis je teste les formulaires et l’affichage avant de vous le remettre.',
       'contact.label': 'Contact',
       'contact.title': 'Discutons de votre projet',
       'contact.subtitle': 'Décrivez votre besoin, je reviens vers vous rapidement avec un devis.',
@@ -634,48 +639,49 @@
       'hero.label': 'Freelance web developer',
       'hero.title': 'I build your website<br class="hidden sm:block"> tailored to you',
       'hero.subtitle': 'Showcase sites, platforms with a back-office, and AI automation — designed and built with modern technology. Flexible and responsive, I can deliver a working site in 72h.',
-      'hero.badge': '⚡ Delivery possible in 72h',
+      'hero.badge': 'Delivery possible in 72h',
       'hero.cta': 'Request a quote',
       'hero.reassurance': 'First chat is free, no commitment',
       'hero.scroll': 'Scroll',
-      'hero.mock.logo': '"Brand"',
+      'hero.mock.logo': '"Chaud Patate"',
       'hero.mock.title': '"Welcome"',
       'hero.mock.cta': '"Discover"',
-      'hero.mock.domain': 'mysite.com',
-      'hero.typewriter': ['Custom showcase sites.', 'Sites with a back-office.', 'Automation & AI.', 'Delivered in 72h.'],
       'stack.label': 'Stack',
       'services.label': 'Services',
       'services.title': 'What I build for you',
-      'services.showcase.title': 'Custom showcase sites',
-      'services.showcase.desc': 'A clean, fast design built to convert and that truly looks like you.',
-      'services.backoffice.title': 'Sites with a back-office',
-      'services.backoffice.desc': 'Manage your own content, without ever touching the code.',
-      'services.ai.title': 'Automation &amp; AI',
-      'services.ai.desc': 'Claude, n8n: I save you real hours in your day-to-day.',
-      'services.fast.title': 'Delivered in 72h',
-      'services.fast.desc': 'A modern, lightweight stack to get online fast, without blowing the budget.',
+      'services.s1.title': 'Multilingual showcase sites',
+      'services.s1.desc': 'Present your business, your products or your venue in several languages, with a contact or quote-request form.',
+      'services.s2.title': 'Online booking and requests',
+      'services.s2.desc': 'Availability calendar, booking request, quote form: what your visitors need to take the next step.',
+      'services.s3.title': 'Back-office and private areas',
+      'services.s3.desc': 'A members-only or client area, and an interface to manage your own calendar, photos, documents and sign-ups.',
+      'services.s4.title': 'Web apps and automation',
+      'services.s4.desc': 'Apps you can install on a phone, and automations with Claude and n8n to take repetitive tasks out of your day.',
       'work.label': 'Work',
       'work.title': 'Real projects, delivered with care',
-      'work.live': 'Live',
-      'work.comingSoon': 'Coming soon',
-      'work.viewSite': 'View the site →',
-      'work.imagine.desc': 'Private community management site with an admin back-office, activity calendar, member management and photo gallery — built with Next.js, Tailwind and Supabase.',
-      'work.terra.desc': 'Showcase site &amp; booking engine for a private luxury estate in Mallorca (Campanet, Serra de Tramuntana). "Luxury estate" design — cream, terracotta, sage, serif typography.',
-      'work.terra.li1': 'Multilingual FR / EN / ES / DE',
-      'work.terra.li2': 'Real-time availability, dynamic seasonal pricing',
-      'work.terra.li3': 'Rates &amp; blocked-dates admin',
-      'work.chaudpatate.desc': 'Showcase site for a jacked-potato food truck: presenting the concept and taking bookings for events.',
-      'work.locafut.desc': 'Multilingual showcase site (FR/EN/NL) for LocaFut, a stainless steel keg rental service for breweries and HORECA businesses in Belgium. Product catalog, partner brewery showcase, quote request form.',
+      'work.viewSite': 'View the site ↗',
+      'work.private': 'Private project',
+      'work.alt': 'Screenshot of the {name} website',
+      'work.terra.desc': 'Private 50-hectare estate in Campanet, Mallorca. Multilingual showcase site (ES/EN/FR/DE) with booking.',
+      'work.topflop.desc': 'Installable web app: a team votes on the top and the flop after every match, with a season ranking. No account needed, mobile first.',
+      'work.chaudpatate.desc': 'Showcase site for a stuffed-potato food truck in Bierges. FR/EN/NL, truck booking for events.',
+      'work.playlist.desc': 'Site for a youth activities group: members, calendar, photos, documents, sign-ups.',
+      'work.eren.desc': 'Site for an industrial battery company: installation, co-financing, management. Multilingual, with a client area.',
+      'work.locafut.desc': 'Stainless steel keg rental for breweries and HORECA in Belgium. FR/EN/NL, catalogue and quote request.',
+      'work.imagine.desc': 'Private community platform with a back-office: members, calendar, gallery, documents. Next.js, Tailwind, Supabase.',
+      'about.label': 'About',
+      'about.alt': 'Portrait of Guillaume de Hollain',
+      'about.placeholder': 'TO WRITE: placeholder for the introduction text. Write here who you are and how you work.',
       'process.label': 'Process',
       'process.title': 'How it works',
-      'process.step1.title': '01 · Brief',
-      'process.step1.desc': 'We scope your needs, your audience and your goals.',
-      'process.step2.title': '02 · Design',
-      'process.step2.desc': 'Mockup and art direction tailored to your brand.',
-      'process.step3.title': '03 · Development',
-      'process.step3.desc': 'Careful implementation, clean code, modern tech.',
-      'process.step4.title': '04 · Launch',
-      'process.step4.desc': 'Deployment, checks, and your site is ready.',
+      'process.step1.title': 'Scoping',
+      'process.step1.desc': 'We define the pages, the languages, what your visitors should be able to do (get in touch, book, sign up) and what you want to edit yourself.',
+      'process.step2.title': 'Mockup',
+      'process.step2.desc': 'I show you the visual direction (colours, typography, page structure) before writing any code. You approve it, or we adjust.',
+      'process.step3.title': 'Development',
+      'process.step3.desc': 'I build the site: text in every language, forms, booking or back-office where needed, and a clean display on mobile and desktop.',
+      'process.step4.title': 'Launch',
+      'process.step4.desc': 'I publish the site, connect your domain name, then test the forms and the display before handing it over.',
       'contact.label': 'Contact',
       'contact.title': "Let's talk about your project",
       'contact.subtitle': "Describe what you need, and I'll get back to you quickly with a quote.",
@@ -700,48 +706,49 @@
       'hero.label': 'Freelance webontwikkelaar',
       'hero.title': 'Ik bouw uw website<br class="hidden sm:block"> op maat',
       'hero.subtitle': 'Vitrinesites, platformen met back-office en AI-automatisering — ontworpen en gebouwd met moderne technologie. Flexibel en snel, ik kan een werkende site binnen 72u leveren.',
-      'hero.badge': '⚡ Levering mogelijk binnen 72u',
+      'hero.badge': 'Levering mogelijk binnen 72u',
       'hero.cta': 'Offerte aanvragen',
       'hero.reassurance': 'Eerste gesprek gratis, vrijblijvend',
       'hero.scroll': 'Scroll',
-      'hero.mock.logo': '"Merk"',
+      'hero.mock.logo': '"Chaud Patate"',
       'hero.mock.title': '"Welkom"',
       'hero.mock.cta': '"Ontdekken"',
-      'hero.mock.domain': 'mijnsite.com',
-      'hero.typewriter': ['Vitrinesites op maat.', 'Sites met back-office.', 'Automatisering & AI.', 'Geleverd in 72u.'],
       'stack.label': 'Stack',
       'services.label': 'Diensten',
       'services.title': 'Wat ik voor u bouw',
-      'services.showcase.title': 'Vitrinesites op maat',
-      'services.showcase.desc': 'Een strak, snel design gemaakt om te converteren en dat echt bij u past.',
-      'services.backoffice.title': 'Sites met back-office',
-      'services.backoffice.desc': 'Beheer uw eigen content, zonder ooit de code aan te raken.',
-      'services.ai.title': 'Automatisering &amp; AI',
-      'services.ai.desc': 'Claude, n8n: ik bespaar u echte uren in uw dagelijkse werk.',
-      'services.fast.title': 'Geleverd in 72u',
-      'services.fast.desc': 'Een moderne, lichte stack om snel online te gaan, zonder het budget te overschrijden.',
+      'services.s1.title': 'Meertalige vitrinesites',
+      'services.s1.desc': 'Uw activiteit, producten of locatie voorstellen in meerdere talen, met een contact- of offerteaanvraagformulier.',
+      'services.s2.title': 'Online reservaties en aanvragen',
+      'services.s2.desc': 'Beschikbaarheidskalender, reservatieaanvraag, offerteformulier: wat uw bezoekers nodig hebben om de stap te zetten.',
+      'services.s3.title': 'Back-office en privéruimtes',
+      'services.s3.desc': 'Een ruimte voorbehouden aan uw leden of klanten, en een interface om zelf kalender, foto’s, documenten en inschrijvingen te beheren.',
+      'services.s4.title': 'Webapps en automatisering',
+      'services.s4.desc': 'Apps die u op uw telefoon kunt installeren, en automatiseringen met Claude en n8n om herhalende taken uit uw dag te halen.',
       'work.label': 'Realisaties',
       'work.title': 'Concrete projecten, met zorg opgeleverd',
-      'work.live': 'Online',
-      'work.comingSoon': 'Binnenkort online',
-      'work.viewSite': 'Bekijk de site →',
-      'work.imagine.desc': 'Privé community-beheersite met admin back-office, activiteitenkalender, ledenbeheer en fotogalerij — gebouwd met Next.js, Tailwind en Supabase.',
-      'work.terra.desc': 'Vitrinesite &amp; boekingsmotor voor een privé luxedomein op Mallorca (Campanet, Serra de Tramuntana). "Luxe landgoed"-design — crème, terracotta, salie, serif-typografie.',
-      'work.terra.li1': 'Meertalig FR / EN / ES / DE',
-      'work.terra.li2': 'Real-time beschikbaarheid, dynamische seizoensprijzen',
-      'work.terra.li3': 'Beheer tarieven &amp; geblokkeerde data',
-      'work.chaudpatate.desc': 'Vitrinesite voor een food truck met gevulde aardappelen: presentatie van het concept en contactopname om de food truck te boeken voor een evenement.',
-      'work.locafut.desc': 'Meertalige vitrinesite (FR/EN/NL) voor LocaFut, een verhuurdienst van roestvrijstalen vaten voor brouwerijen en HORECA-zaken in België. Productcatalogus, presentatie van partnerbrouwerijen, offerteaanvraagformulier.',
+      'work.viewSite': 'Bekijk de site ↗',
+      'work.private': 'Privéproject',
+      'work.alt': 'Schermafbeelding van de website {name}',
+      'work.terra.desc': 'Privédomein van 50 hectare in Campanet, Mallorca. Meertalige vitrinesite (ES/EN/FR/DE) met reservaties.',
+      'work.topflop.desc': 'Installeerbare webapp: een team stemt na elke wedstrijd over de top en de flop, met een klassement over het seizoen. Zonder account, mobile first.',
+      'work.chaudpatate.desc': 'Vitrinesite van een food truck met gevulde aardappelen in Bierges. FR/EN/NL, de truck boeken voor evenementen.',
+      'work.playlist.desc': 'Site van een activiteitengroep voor jongeren: leden, kalender, foto’s, documenten, inschrijvingen.',
+      'work.eren.desc': 'Site van een bedrijf in industriële batterijen: installatie, medefinanciering, beheer. Meertalig, met klantenportaal.',
+      'work.locafut.desc': 'Verhuur van roestvrijstalen vaten voor brouwerijen en horeca in België. FR/EN/NL, catalogus en offerteaanvraag.',
+      'work.imagine.desc': 'Privé communityplatform met back-office: leden, kalender, galerij, documenten. Next.js, Tailwind, Supabase.',
+      'about.label': 'Over mij',
+      'about.alt': 'Portret van Guillaume de Hollain',
+      'about.placeholder': 'TE SCHRIJVEN: plaats voor de voorstellingstekst. Schrijf hier wie u bent en hoe u werkt.',
       'process.label': 'Verloop',
       'process.title': 'Hoe het werkt',
-      'process.step1.title': '01 · Briefing',
-      'process.step1.desc': 'We brengen uw behoeften, doelgroep en doelstellingen in kaart.',
-      'process.step2.title': '02 · Design',
-      'process.step2.desc': 'Ontwerp en art direction afgestemd op uw merk.',
-      'process.step3.title': '03 · Ontwikkeling',
-      'process.step3.desc': 'Zorgvuldige implementatie, propere code, moderne technologie.',
-      'process.step4.title': '04 · Lancering',
-      'process.step4.desc': 'Deployment, controles, en uw site is klaar.',
+      'process.step1.title': 'Afbakening',
+      'process.step1.desc': 'We bepalen de pagina’s, de talen, wat uw bezoekers moeten kunnen doen (contact opnemen, reserveren, inschrijven) en wat u zelf wilt aanpassen.',
+      'process.step2.title': 'Ontwerp',
+      'process.step2.desc': 'Ik toon u de visuele richting (kleuren, typografie, paginastructuur) voordat ik code schrijf. U keurt goed, of we passen aan.',
+      'process.step3.title': 'Ontwikkeling',
+      'process.step3.desc': 'Ik bouw de site: teksten in elke taal, formulieren, reservatie of back-office waar nodig, en een verzorgde weergave op mobiel en computer.',
+      'process.step4.title': 'Lancering',
+      'process.step4.desc': 'Ik publiceer de site, koppel uw domeinnaam en test de formulieren en de weergave voordat ik hem aan u overhandig.',
       'contact.label': 'Contact',
       'contact.title': 'Laten we over uw project praten',
       'contact.subtitle': 'Beschrijf uw behoefte, ik kom snel bij u terug met een offerte.',
@@ -785,6 +792,11 @@
       const key = el.getAttribute('data-i18n-aria-label');
       if (translations[lang][key] !== undefined) el.setAttribute('aria-label', translations[lang][key]);
     });
+    // image alt text; "{name}" is filled from the element's data-name
+    document.querySelectorAll('[data-i18n-alt]').forEach((el) => {
+      const text = translations[lang][el.getAttribute('data-i18n-alt')];
+      if (text !== undefined) el.setAttribute('alt', text.replace('{name}', el.getAttribute('data-name') || ''));
+    });
 
     document.querySelectorAll('#langSwitcher .lang-btn').forEach((btn) => {
       btn.classList.toggle('is-active', btn.getAttribute('data-lang') === lang);
@@ -799,18 +811,7 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ---------- custom cursor ----------
-  const cursor = document.getElementById('cursor-dot');
   const isTouch = matchMedia('(hover: none), (pointer: coarse)').matches;
-  if (!isTouch) {
-    window.addEventListener('mousemove', (e) => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => { cursor.style.width = '26px'; cursor.style.height = '26px'; cursor.style.marginLeft = '-13px'; cursor.style.marginTop = '-13px'; });
-      el.addEventListener('mouseleave', () => { cursor.style.width = '10px'; cursor.style.height = '10px'; cursor.style.marginLeft = '-5px'; cursor.style.marginTop = '-5px'; });
-    });
-  }
 
   // ---------- Lenis smooth scroll ----------
   let lenis = null;
@@ -820,60 +821,6 @@
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
   }
-
-  // ---------- Hero looping typewriter (phrases follow the current language) ----------
-  (function heroTypewriter() {
-    const el = document.getElementById('heroTypewriter');
-    if (!el) return;
-    let phraseIndex = 0, charIndex = 0, deleting = false;
-
-    function tick() {
-      const phrases = translations[currentLang]['hero.typewriter'];
-      const current = phrases[phraseIndex % phrases.length];
-      if (!deleting) {
-        charIndex++;
-        el.textContent = current.slice(0, charIndex);
-        if (charIndex === current.length) { deleting = true; setTimeout(tick, 1500); return; }
-        setTimeout(tick, 70);
-      } else {
-        charIndex--;
-        el.textContent = current.slice(0, charIndex);
-        if (charIndex === 0) {
-          deleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-          setTimeout(tick, 400);
-          return;
-        }
-        setTimeout(tick, 35);
-      }
-    }
-    tick();
-  })();
-
-  // ---------- Work carousel: prev/next arrows + mouse-wheel scroll ----------
-  (function workCarouselNav() {
-    const track = document.getElementById('workCarousel');
-    const prevBtn = document.getElementById('workPrev');
-    const nextBtn = document.getElementById('workNext');
-    if (!track) return;
-
-    function step() {
-      const card = track.querySelector(':scope > div');
-      return card ? card.getBoundingClientRect().width + 20 : 380;
-    }
-
-    if (prevBtn) prevBtn.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-    if (nextBtn) nextBtn.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
-
-    // Let vertical mouse-wheel motion drive the horizontal scroll while hovering the
-    // carousel, since a trackpad/wheel naturally scrolls vertically otherwise.
-    track.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        track.scrollBy({ left: e.deltaY });
-      }
-    }, { passive: false });
-  })();
 
   document.querySelectorAll('[data-scroll]').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -891,7 +838,7 @@
   const isDesktop = window.innerWidth > 768;
 
   if (isDesktop) {
-    // Hero: typewriter (0 - 40%) then code -> site morph (40 - 100%), pinned & scrubbed.
+    // Hero: code typed out, then the finished site appears. Pinned & scrubbed.
     // pin:true with pinSpacing:true (default) auto-reserves exactly the scroll distance
     // declared in `end` — no manual section height, so nothing can drift out of sync
     // and Services can never render underneath a still-pinned Hero.
@@ -899,7 +846,7 @@
       scrollTrigger: {
         trigger: '#hero',
         start: 'top top',
-        end: '+=3200',
+        end: '+=2600',
         scrub: 0.4,
         pin: '#heroPin',
         pinSpacing: true,
@@ -907,46 +854,33 @@
       }
     });
 
-    // Phase 1 — typewriter reveal, starts at the very first pixel of scroll
     heroTl.to('.code-line', { clipPath: 'inset(0 0% 0 0)', stagger: 0.13, duration: 0.35, ease: 'none' }, 0);
 
-    // Phase 2 — morph into the finished site
     heroTl
       .to('#codeWindow', { opacity: 0, scale: 0.94, filter: 'blur(8px)', duration: 0.5, ease: 'power1.inOut' }, 1.75)
       .fromTo('#siteWindow', { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power1.inOut' }, 1.75)
-      .from('.site-nav-link', { opacity: 0, y: -8, stagger: 0.1, duration: 0.3 }, 2.25)
-      .from('.site-hero-title', { opacity: 0, y: 16, duration: 0.3 }, 2.5)
-      .from('.site-hero-sub', { opacity: 0, y: 16, duration: 0.3 }, 2.65)
-      .from('.site-cta', { opacity: 0, scale: 0.7, duration: 0.3, ease: 'back.out(2)' }, 2.8)
-      .from('.site-image', { opacity: 0, y: 20, duration: 0.35 }, 2.95);
+      // the page "loads" top to bottom inside the browser frame
+      .fromTo('.site-shot', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 0.8, ease: 'none' }, 2.25);
   } else {
     // Mobile: no pin (the address bar showing/hiding on scroll throws off ScrollTrigger's
-    // pinned-height math). Instead, play the same typewriter -> morph beat once, as a normal
-    // entrance animation, when the Hero scrolls into view. Fewer simultaneous tweens than
-    // desktop (no scale/blur, fewer staggered elements) to stay smooth on low/mid-range phones.
+    // pinned-height math). Play the same code -> site beat once, when the Hero is in view.
     const heroTlMobile = gsap.timeline({ paused: true });
     heroTlMobile
       .to('.code-line', { clipPath: 'inset(0 0% 0 0)', stagger: 0.08, duration: 0.25, ease: 'none' }, 0)
       .to('#codeWindow', { opacity: 0, duration: 0.4, ease: 'power1.inOut' }, '+=0.4')
       .fromTo('#siteWindow', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power1.inOut' }, '<')
-      .from('.site-hero-title', { opacity: 0, y: 12, duration: 0.3 }, '-=0.1')
-      .from('.site-cta', { opacity: 0, duration: 0.3 }, '-=0.1')
-      .from('.site-image', { opacity: 0, duration: 0.3 }, '-=0.1');
+      .fromTo('.site-shot', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 0.6, ease: 'none' }, '-=0.1');
 
-    // Hero is the first section, so it's often already inside the trigger zone at page
-    // load (no scroll needed) — ScrollTrigger's onEnter only fires on a crossing, not on an
-    // already-active initial state, so we explicitly check `isActive` right after creation
-    // too. A manual flag guarantees the entrance plays exactly once either way.
+    // A manual flag guarantees the entrance plays exactly once, whether the Hero is already
+    // in view at load (onEnter wouldn't fire) or scrolled into view later.
     let heroPlayed = false;
     function playHeroOnce() { if (!heroPlayed) { heroPlayed = true; heroTlMobile.play(); } }
     ScrollTrigger.create({ trigger: '#hero', start: 'top 70%', pin: false, onEnter: playHeroOnce });
-    // ScrollTrigger's own isActive isn't reliable synchronously right after create() (its
-    // internal refresh hasn't run yet), so check the real DOM position directly instead.
     const heroTopNow = document.getElementById('hero').getBoundingClientRect().top;
     if (heroTopNow < window.innerHeight * 0.7) playHeroOnce();
   }
 
-  // Generic reveal-on-scroll for cards/sections
+  // Generic reveal-on-scroll for section headings, list rows and steps
   gsap.utils.toArray('.reveal').forEach((el) => {
     gsap.to(el, {
       opacity: 1,
@@ -982,16 +916,16 @@
       statusEl.classList.remove('hidden');
       if (data.success) {
         statusEl.textContent = translations[currentLang]['form.success'];
-        statusEl.className = 'text-xs mt-1 text-green-300';
+        statusEl.className = 'text-xs text-emerald-300';
         form.reset();
       } else {
         statusEl.textContent = translations[currentLang]['form.error'];
-        statusEl.className = 'text-xs mt-1 text-red-300';
+        statusEl.className = 'text-xs text-red-300';
       }
     } catch (err) {
       statusEl.classList.remove('hidden');
       statusEl.textContent = translations[currentLang]['form.error'];
-      statusEl.className = 'text-xs mt-1 text-red-300';
+      statusEl.className = 'text-xs text-red-300';
     } finally {
       btnLabel.textContent = translations[currentLang]['form.submit'];
     }
