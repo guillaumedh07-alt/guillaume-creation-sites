@@ -156,27 +156,27 @@
 
   <!-- ============ HERO ============ -->
   <section id="hero" class="relative">
-    <div id="heroPin" class="relative top-0 min-h-screen md:h-screen w-full flex flex-col items-center overflow-hidden">
+    <div id="heroPin" class="relative w-full min-h-screen md:min-h-0 flex flex-col items-center overflow-hidden lg:flex-row lg:max-w-6xl lg:mx-auto lg:px-10 lg:gap-12 lg:pt-24 lg:pb-14">
 
       <!-- fixed text, always readable -->
-      <div class="relative z-20 max-w-4xl mx-auto px-6 pt-28 md:pt-32 text-center">
-        <p data-i18n="hero.label" class="font-space text-xs md:text-sm tracking-[0.25em] uppercase text-white/60 mb-5">
+      <div class="relative z-20 max-w-4xl mx-auto px-6 pt-28 md:pt-24 text-center lg:mx-0 lg:px-0 lg:pt-0 lg:text-left lg:flex-1 lg:min-w-0">
+        <p data-i18n="hero.label" class="font-space text-xs md:text-sm tracking-[0.25em] uppercase text-white/60 mb-3 md:mb-5">
           Développeur web freelance
         </p>
-        <h1 data-i18n-html="hero.title" class="font-space text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] text-white">
-          Je code votre site web<br class="hidden sm:block"> sur mesure
+        <h1 data-i18n-html="hero.title" class="font-space text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-semibold leading-[1.08] text-white lg:[text-wrap:balance]">
+          Je code votre site web<br class="hidden sm:block lg:hidden"> sur mesure
         </h1>
-        <p data-i18n="hero.subtitle" class="mt-6 text-base md:text-lg text-white/70 max-w-xl mx-auto">
+        <p data-i18n="hero.subtitle" class="mt-6 md:mt-5 text-base md:text-lg text-white/70 max-w-xl mx-auto lg:mx-0">
           Sites vitrines, plateformes avec back-office et automatisation IA — conçus et développés
           avec des technologies modernes. Flexible et réactif, je peux livrer un site fonctionnel en 72h.
         </p>
-        <div class="mt-6 flex items-center justify-center">
+        <div class="mt-6 md:mt-4 flex items-center justify-center lg:justify-start">
           <span class="inline-flex items-center gap-2 text-xs font-medium text-accent border border-accent/30 px-3.5 py-1.5 rounded-full">
             <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
             <span data-i18n="hero.badge">Livraison possible en 72h</span>
           </span>
         </div>
-        <div class="mt-7 flex flex-col items-center gap-3">
+        <div class="mt-7 md:mt-5 flex flex-col items-center gap-3 lg:items-start">
           <a href="#contact" data-scroll data-i18n="hero.cta"
              class="inline-flex items-center gap-2 bg-accent text-ink font-space font-semibold text-sm px-7 py-3.5 rounded-full hover:-translate-y-0.5 hover:brightness-110 transition-all">
             Demander un devis
@@ -186,8 +186,8 @@
       </div>
 
       <!-- scroll-driven visual: code, then the real site -->
-      <div id="hero-visual-wrap" class="relative z-10 w-full flex-1 flex items-center justify-center px-6 pb-10">
-        <div class="relative w-full max-w-2xl h-[300px] sm:h-[380px] md:h-[420px]">
+      <div id="hero-visual-wrap" class="relative z-10 w-full flex-1 flex items-center justify-center px-6 pb-10 md:pt-8 lg:w-auto lg:min-w-0 lg:px-0 lg:py-0">
+        <div class="relative w-full max-w-2xl h-[300px] sm:h-[380px] md:h-[330px] lg:h-[340px]">
 
           <!-- CODE MOCKUP -->
           <div id="codeWindow" class="w-full h-full rounded-xl bg-ink2 border border-white/10 shadow-2xl overflow-hidden flex flex-col">
@@ -197,7 +197,7 @@
               <span class="traffic"></span>
               <span class="ml-3 text-[11px] text-white/50 code-font">site.tsx</span>
             </div>
-            <div class="p-5 code-font text-[12px] sm:text-[13px] leading-6 sm:leading-7">
+            <div class="p-5 md:p-4 code-font text-[12px] sm:text-[13px] leading-6 sm:leading-7 md:leading-6">
               <div class="code-line"><span class="text-white/90">export default function</span> <span class="text-white">Site</span><span class="text-white/50">() {</span></div>
               <div class="code-line pl-4"><span class="text-white/90">return</span> <span class="text-white/50">(</span></div>
               <div class="code-line pl-8"><span class="text-white/50">&lt;</span><span class="text-white">Header</span> <span class="text-white/55">logo</span><span class="text-white/50">=</span><span class="text-accent" data-i18n="hero.mock.logo">"Chaud Patate"</span> <span class="text-white/50">/&gt;</span></div>
@@ -228,7 +228,7 @@
         </div>
       </div>
 
-      <div class="relative z-20 pb-8 flex flex-col items-center gap-2 text-white/50">
+      <div class="relative z-20 pb-8 flex flex-col items-center gap-2 text-white/50 md:hidden">
         <span data-i18n="hero.scroll" class="text-[10px] tracking-[0.2em] uppercase">Scroll</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </div>
@@ -247,43 +247,43 @@
   </div>
 
   <!-- ============ SERVICES — title left, list right ============ -->
-  <section id="services" class="relative z-30 bg-ink py-32 md:py-44 px-6">
-    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-14 lg:gap-8">
+  <section id="services" class="relative z-30 bg-ink py-16 md:py-28 px-6">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-8">
 
       <div class="reveal lg:col-span-4">
         <div class="lg:sticky lg:top-32">
-          <p data-i18n="services.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">Services</p>
-          <h2 data-i18n="services.title" class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Ce que je construis pour vous</h2>
+          <p data-i18n="services.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-3 md:mb-5">Services</p>
+          <h2 data-i18n="services.title" class="font-space text-3xl md:text-5xl font-semibold leading-[1.1]">Ce que je construis pour vous</h2>
         </div>
       </div>
 
       <ol class="lg:col-span-7 lg:col-start-6 divide-y divide-white/10 border-y border-white/10">
-        <li class="reveal py-9 md:py-10 grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr] gap-x-4">
-          <span class="font-space text-sm text-white/45 pt-1.5">01</span>
+        <li class="reveal py-4 md:py-8 grid grid-cols-[2.25rem_1fr] md:grid-cols-[4rem_1fr] gap-x-3 md:gap-x-4">
+          <span class="font-space text-sm text-white/45 pt-1 md:pt-1.5">01</span>
           <div>
-            <h3 data-i18n="services.s1.title" class="font-space text-xl md:text-2xl font-semibold mb-3">Sites vitrines multilingues</h3>
-            <p data-i18n="services.s1.desc" class="text-[15px] text-white/65 leading-relaxed max-w-lg">Présenter votre activité, vos produits ou votre lieu en plusieurs langues, avec un formulaire de contact ou de demande de devis.</p>
+            <h3 data-i18n="services.s1.title" class="font-space text-lg md:text-2xl font-semibold mb-1 md:mb-3">Sites vitrines multilingues</h3>
+            <p data-i18n="services.s1.desc" class="text-sm md:text-[15px] text-white/65 leading-relaxed max-w-lg">Votre activité en plusieurs langues, avec contact ou demande de devis.</p>
           </div>
         </li>
-        <li class="reveal py-9 md:py-10 grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr] gap-x-4">
-          <span class="font-space text-sm text-white/45 pt-1.5">02</span>
+        <li class="reveal py-4 md:py-8 grid grid-cols-[2.25rem_1fr] md:grid-cols-[4rem_1fr] gap-x-3 md:gap-x-4">
+          <span class="font-space text-sm text-white/45 pt-1 md:pt-1.5">02</span>
           <div>
-            <h3 data-i18n="services.s2.title" class="font-space text-xl md:text-2xl font-semibold mb-3">Réservation et demandes en ligne</h3>
-            <p data-i18n="services.s2.desc" class="text-[15px] text-white/65 leading-relaxed max-w-lg">Calendrier de disponibilités, demande de réservation, formulaire de devis : ce qu’il faut à vos visiteurs pour passer à l’action.</p>
+            <h3 data-i18n="services.s2.title" class="font-space text-lg md:text-2xl font-semibold mb-1 md:mb-3">Réservation et demandes en ligne</h3>
+            <p data-i18n="services.s2.desc" class="text-sm md:text-[15px] text-white/65 leading-relaxed max-w-lg">Calendrier, réservation, formulaire de devis.</p>
           </div>
         </li>
-        <li class="reveal py-9 md:py-10 grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr] gap-x-4">
-          <span class="font-space text-sm text-white/45 pt-1.5">03</span>
+        <li class="reveal py-4 md:py-8 grid grid-cols-[2.25rem_1fr] md:grid-cols-[4rem_1fr] gap-x-3 md:gap-x-4">
+          <span class="font-space text-sm text-white/45 pt-1 md:pt-1.5">03</span>
           <div>
-            <h3 data-i18n="services.s3.title" class="font-space text-xl md:text-2xl font-semibold mb-3">Back-office et espaces privés</h3>
-            <p data-i18n="services.s3.desc" class="text-[15px] text-white/65 leading-relaxed max-w-lg">Un espace réservé à vos membres ou clients, et une interface pour gérer vous-même calendrier, photos, documents et inscriptions.</p>
+            <h3 data-i18n="services.s3.title" class="font-space text-lg md:text-2xl font-semibold mb-1 md:mb-3">Back-office et espaces privés</h3>
+            <p data-i18n="services.s3.desc" class="text-sm md:text-[15px] text-white/65 leading-relaxed max-w-lg">Espace membres ou clients, contenu géré par vous.</p>
           </div>
         </li>
-        <li class="reveal py-9 md:py-10 grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr] gap-x-4">
-          <span class="font-space text-sm text-white/45 pt-1.5">04</span>
+        <li class="reveal py-4 md:py-8 grid grid-cols-[2.25rem_1fr] md:grid-cols-[4rem_1fr] gap-x-3 md:gap-x-4">
+          <span class="font-space text-sm text-white/45 pt-1 md:pt-1.5">04</span>
           <div>
-            <h3 data-i18n="services.s4.title" class="font-space text-xl md:text-2xl font-semibold mb-3">Applications web et automatisation</h3>
-            <p data-i18n="services.s4.desc" class="text-[15px] text-white/65 leading-relaxed max-w-lg">Applications installables sur téléphone, et automatisations avec Claude et n8n pour retirer les tâches répétitives de votre quotidien.</p>
+            <h3 data-i18n="services.s4.title" class="font-space text-lg md:text-2xl font-semibold mb-1 md:mb-3">Applications web et automatisation</h3>
+            <p data-i18n="services.s4.desc" class="text-sm md:text-[15px] text-white/65 leading-relaxed max-w-lg">Apps installables sur téléphone, automatisations Claude et n8n.</p>
           </div>
         </li>
       </ol>
@@ -291,14 +291,14 @@
   </section>
 
   <!-- ============ RÉALISATIONS — full-width band, grid on desktop, swipe on mobile ============ -->
-  <section id="work" class="relative py-32 md:py-44 bg-ink2">
+  <section id="work" class="relative py-16 md:py-28 bg-ink2">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="reveal max-w-2xl mb-16 md:mb-20">
-        <p data-i18n="work.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">Réalisations</p>
-        <h2 data-i18n="work.title" class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Des projets concrets, livrés avec soin</h2>
+      <div class="reveal max-w-2xl mb-8 md:mb-14">
+        <p data-i18n="work.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-3 md:mb-5">Réalisations</p>
+        <h2 data-i18n="work.title" class="font-space text-3xl md:text-5xl font-semibold leading-[1.1]">Des projets concrets, livrés avec soin</h2>
       </div>
 
-      <div id="workGrid" class="no-scrollbar -mx-6 px-6 scroll-px-6 md:mx-0 md:px-0 md:scroll-px-0 flex gap-5 overflow-x-auto snap-x snap-mandatory md:snap-none md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-8 md:gap-y-16">
+      <div id="workGrid" class="no-scrollbar -mx-6 px-6 scroll-px-6 md:mx-0 md:px-0 md:scroll-px-0 flex gap-5 overflow-x-auto snap-x snap-mandatory md:snap-none md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-8 md:gap-y-12">
 
         <!-- 1. TERRA — featured, full row on desktop -->
         <a href="https://terra-mallorca.com" target="_blank" rel="noopener noreferrer"
@@ -311,7 +311,7 @@
           <div class="pt-5 lg:pt-0">
             <h3 class="font-space text-2xl lg:text-4xl font-semibold">TERRA</h3>
             <p data-i18n="work.terra.desc" class="mt-3 text-[15px] lg:text-lg text-white/65 leading-relaxed max-w-md">Domaine privé de 50 hectares à Campanet, Mallorca. Site vitrine multilingue (ES/EN/FR/DE) et réservation.</p>
-            <span data-i18n="work.viewSite" class="mt-5 inline-block text-sm font-medium text-white group-hover:text-accent transition-colors">Voir le site ↗</span>
+            <span class="inline-flex items-center gap-1.5 mt-5 inline-block text-sm font-medium text-white group-hover:text-accent transition-colors"><span data-i18n="work.viewSite">Voir le site</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
           </div>
         </a>
 
@@ -326,7 +326,7 @@
           <div class="pt-5">
             <div class="flex items-baseline justify-between gap-3">
               <h3 class="font-space text-xl font-semibold">Top Flop</h3>
-              <span data-i18n="work.viewSite" class="text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap">Voir le site ↗</span>
+              <span class="inline-flex items-center gap-1.5 text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap"><span data-i18n="work.viewSite">Voir le site</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
             </div>
             <p data-i18n="work.topflop.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Web app installable : une équipe vote le top et le flop après chaque match, classement sur la saison. Sans compte, pensée mobile d’abord.</p>
           </div>
@@ -343,7 +343,7 @@
           <div class="pt-5">
             <div class="flex items-baseline justify-between gap-3">
               <h3 class="font-space text-xl font-semibold">Chaud Patate</h3>
-              <span data-i18n="work.viewSite" class="text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap">Voir le site ↗</span>
+              <span class="inline-flex items-center gap-1.5 text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap"><span data-i18n="work.viewSite">Voir le site</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
             </div>
             <p data-i18n="work.chaudpatate.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Site vitrine d’un food truck de patates fourrées à Bierges. FR/EN/NL, réservation du truck pour événements.</p>
           </div>
@@ -379,7 +379,7 @@
           <div class="pt-5">
             <div class="flex items-baseline justify-between gap-3">
               <h3 class="font-space text-xl font-semibold">EREN Energy Storage</h3>
-              <span data-i18n="work.viewSite" class="text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap">Voir le site ↗</span>
+              <span class="inline-flex items-center gap-1.5 text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap"><span data-i18n="work.viewSite">Voir le site</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
             </div>
             <p data-i18n="work.eren.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Site d’une société de batteries industrielles : installation, cofinancement, gestion. Multilingue, avec espace client.</p>
           </div>
@@ -396,7 +396,7 @@
           <div class="pt-5">
             <div class="flex items-baseline justify-between gap-3">
               <h3 class="font-space text-xl font-semibold">LocaFût</h3>
-              <span data-i18n="work.viewSite" class="text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap">Voir le site ↗</span>
+              <span class="inline-flex items-center gap-1.5 text-sm text-white/65 group-hover:text-accent transition-colors whitespace-nowrap"><span data-i18n="work.viewSite">Voir le site</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
             </div>
             <p data-i18n="work.locafut.desc" class="mt-2 text-[15px] text-white/65 leading-relaxed">Location de fûts inox pour brasseries et HORECA en Belgique. FR/EN/NL, catalogue et demande de devis.</p>
           </div>
@@ -426,11 +426,11 @@
   </section>
 
   <!-- ============ À PROPOS — portrait left, text right ============ -->
-  <section id="about" class="relative py-32 md:py-44 px-6">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-12 md:gap-10 items-center">
+  <section id="about" class="relative py-16 md:py-28 px-6">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-6 md:gap-10 items-center">
 
       <div class="reveal md:col-span-5 lg:col-span-4">
-        <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-square max-w-sm mx-auto md:max-w-none">
+        <div class="overflow-hidden rounded-lg bg-white/[0.04] aspect-square max-w-[140px] md:max-w-none">
           <img src="images/guillaume.jpg" width="800" height="800" loading="lazy" decoding="async"
                alt="Portrait de Guillaume de Hollain" data-i18n-alt="about.alt"
                class="w-full h-full object-cover">
@@ -438,72 +438,70 @@
       </div>
 
       <div class="reveal md:col-span-7 lg:col-span-7 lg:col-start-6">
-        <p data-i18n="about.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">À propos</p>
-        <h2 class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Guillaume de Hollain</h2>
+        <p data-i18n="about.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-3 md:mb-5">À propos</p>
+        <h2 class="font-space text-3xl md:text-5xl font-semibold leading-[1.1]">Guillaume de Hollain</h2>
         <p data-i18n="hero.label" class="mt-3 text-white/65">Développeur web freelance</p>
 
-        <!-- PLACEHOLDER: to be replaced by Guillaume's own text -->
-        <div class="mt-10 border-2 border-dashed border-accent rounded-lg p-6 md:p-8 bg-accent/[0.06]">
-          <p data-i18n="about.placeholder" class="font-space text-base md:text-lg font-semibold text-accent leading-relaxed">
-            À RÉDIGER : emplacement du texte de présentation. Écrivez ici qui vous êtes et comment vous travaillez.
-          </p>
+        <div class="mt-6 md:mt-10 space-y-4 text-[15px] md:text-base text-white/70 leading-relaxed max-w-xl">
+          <p data-i18n="about.p1">Je suis étudiant en économie à Maastricht, basé en Belgique près de Bruxelles. Je construis des sites web — j’ai commencé par les miens, un food truck que je fais tourner sur des événements et un domaine à Mallorca, puis on m’a demandé d’en faire pour d’autres.</p>
+          <p data-i18n="about.p2">Je sais donc à quoi un site doit servir : remplir un agenda, répondre à un client, faire tourner une activité. Je m’occupe de toute la chaîne — domaine, hébergement, mise en ligne — vous n’avez rien à gérer. Français, néerlandais, anglais, espagnol.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ PROCESS — four steps in a row ============ -->
-  <section id="process" class="relative py-32 md:py-44 px-6 bg-ink2">
+  <section id="process" class="relative py-16 md:py-28 px-6 bg-ink2">
     <div class="max-w-6xl mx-auto">
-      <div class="reveal max-w-2xl mb-16 md:mb-24">
-        <p data-i18n="process.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">Process</p>
-        <h2 data-i18n="process.title" class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Comment ça se passe</h2>
+      <div class="reveal max-w-2xl mb-8 md:mb-14">
+        <p data-i18n="process.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-3 md:mb-5">Process</p>
+        <h2 data-i18n="process.title" class="font-space text-3xl md:text-5xl font-semibold leading-[1.1]">Comment ça se passe</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-14">
-        <div class="reveal border-t border-white/20 pt-6">
-          <p class="font-space text-5xl font-semibold text-white/25 mb-6">01</p>
-          <h3 data-i18n="process.step1.title" class="font-space text-xl font-semibold mb-3">Cadrage</h3>
-          <p data-i18n="process.step1.desc" class="text-[15px] text-white/65 leading-relaxed">On définit les pages, les langues, ce que vos visiteurs doivent pouvoir faire (contacter, réserver, s’inscrire) et ce que vous voulez modifier vous-même.</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-7 md:gap-y-14">
+        <div class="reveal border-t border-white/20 pt-4 md:pt-6">
+          <p class="font-space text-3xl md:text-5xl font-semibold text-white/25 mb-2 md:mb-6">01</p>
+          <h3 data-i18n="process.step1.title" class="font-space text-base md:text-xl font-semibold mb-1 md:mb-3">Cadrage</h3>
+          <p data-i18n="process.step1.desc" class="text-[13px] md:text-[15px] text-white/65 leading-snug md:leading-relaxed">On définit pages, langues et objectifs.</p>
         </div>
-        <div class="reveal border-t border-white/20 pt-6">
-          <p class="font-space text-5xl font-semibold text-white/25 mb-6">02</p>
-          <h3 data-i18n="process.step2.title" class="font-space text-xl font-semibold mb-3">Maquette</h3>
-          <p data-i18n="process.step2.desc" class="text-[15px] text-white/65 leading-relaxed">Je vous montre la direction visuelle (couleurs, typographie, structure des pages) avant de coder. Vous validez, ou on ajuste.</p>
+        <div class="reveal border-t border-white/20 pt-4 md:pt-6">
+          <p class="font-space text-3xl md:text-5xl font-semibold text-white/25 mb-2 md:mb-6">02</p>
+          <h3 data-i18n="process.step2.title" class="font-space text-base md:text-xl font-semibold mb-1 md:mb-3">Maquette</h3>
+          <p data-i18n="process.step2.desc" class="text-[13px] md:text-[15px] text-white/65 leading-snug md:leading-relaxed">Vous validez la direction visuelle avant le code.</p>
         </div>
-        <div class="reveal border-t border-white/20 pt-6">
-          <p class="font-space text-5xl font-semibold text-white/25 mb-6">03</p>
-          <h3 data-i18n="process.step3.title" class="font-space text-xl font-semibold mb-3">Développement</h3>
-          <p data-i18n="process.step3.desc" class="text-[15px] text-white/65 leading-relaxed">Je construis le site : textes dans chaque langue, formulaires, réservation ou back-office si besoin, affichage soigné sur mobile comme sur ordinateur.</p>
+        <div class="reveal border-t border-white/20 pt-4 md:pt-6">
+          <p class="font-space text-3xl md:text-5xl font-semibold text-white/25 mb-2 md:mb-6">03</p>
+          <h3 data-i18n="process.step3.title" class="font-space text-base md:text-xl font-semibold mb-1 md:mb-3">Développement</h3>
+          <p data-i18n="process.step3.desc" class="text-[13px] md:text-[15px] text-white/65 leading-snug md:leading-relaxed">Je construis le site, pour mobile et ordinateur.</p>
         </div>
-        <div class="reveal border-t border-white/20 pt-6">
-          <p class="font-space text-5xl font-semibold text-white/25 mb-6">04</p>
-          <h3 data-i18n="process.step4.title" class="font-space text-xl font-semibold mb-3">Mise en ligne</h3>
-          <p data-i18n="process.step4.desc" class="text-[15px] text-white/65 leading-relaxed">Je publie le site, je relie votre nom de domaine, puis je teste les formulaires et l’affichage avant de vous le remettre.</p>
+        <div class="reveal border-t border-white/20 pt-4 md:pt-6">
+          <p class="font-space text-3xl md:text-5xl font-semibold text-white/25 mb-2 md:mb-6">04</p>
+          <h3 data-i18n="process.step4.title" class="font-space text-base md:text-xl font-semibold mb-1 md:mb-3">Mise en ligne</h3>
+          <p data-i18n="process.step4.desc" class="text-[13px] md:text-[15px] text-white/65 leading-snug md:leading-relaxed">Je publie le site, relie votre nom de domaine et teste.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ CONTACT ============ -->
-  <section id="contact" class="relative py-32 md:py-44 px-6">
-    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-14 lg:gap-8">
+  <section id="contact" class="relative py-16 md:py-28 px-6">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-8">
 
       <!-- direct contact -->
       <div class="reveal lg:col-span-5">
-        <p data-i18n="contact.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-5">Contact</p>
-        <h2 data-i18n="contact.title" class="font-space text-4xl md:text-5xl font-semibold leading-[1.1]">Discutons de votre projet</h2>
+        <p data-i18n="contact.label" class="font-space text-xs tracking-[0.25em] uppercase text-white/60 mb-3 md:mb-5">Contact</p>
+        <h2 data-i18n="contact.title" class="font-space text-3xl md:text-5xl font-semibold leading-[1.1]">Discutons de votre projet</h2>
         <p data-i18n="contact.subtitle" class="mt-5 text-white/65 max-w-sm">Décrivez votre besoin, je reviens vers vous rapidement avec un devis.</p>
 
-        <div class="mt-12 border-t border-white/10">
-          <a href="tel:+32456115424" class="group flex items-center justify-between py-5 border-b border-white/10">
+        <div class="mt-8 md:mt-12 border-t border-white/10">
+          <a href="tel:+32456115424" class="group flex items-center justify-between py-4 md:py-5 border-b border-white/10">
             <div>
               <p data-i18n="contact.phone" class="text-xs text-white/55 mb-1">Téléphone</p>
               <p class="font-space text-lg group-hover:text-accent transition-colors">+32 456 115 424</p>
             </div>
             <svg class="text-white/40 group-hover:text-accent transition-colors" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </a>
-          <a href="mailto:guillaumedh07@gmail.com" class="group flex items-center justify-between py-5 border-b border-white/10">
+          <a href="mailto:guillaumedh07@gmail.com" class="group flex items-center justify-between py-4 md:py-5 border-b border-white/10">
             <div>
               <p data-i18n="contact.email" class="text-xs text-white/55 mb-1">Email</p>
               <p class="font-space text-lg group-hover:text-accent transition-colors break-all">guillaumedh07@gmail.com</p>
@@ -520,7 +518,7 @@
       </div>
 
       <!-- form -->
-      <form id="contactForm" class="reveal lg:col-span-6 lg:col-start-7 flex flex-col gap-7 lg:pt-14"
+      <form id="contactForm" class="reveal lg:col-span-6 lg:col-start-7 flex flex-col gap-5 md:gap-7 lg:pt-14"
             action="https://api.web3forms.com/submit" method="POST">
 
         <input type="hidden" name="access_key" value="1b486f29-cef2-4bc2-832b-a45219bb79c9">
@@ -537,7 +535,7 @@
         </div>
         <div>
           <label data-i18n="form.message" for="f-message" class="text-xs text-white/60 block">Message</label>
-          <textarea id="f-message" required name="message" rows="4" data-i18n-placeholder="form.messagePh" placeholder="Décrivez votre projet..." class="field resize-none"></textarea>
+          <textarea id="f-message" required name="message" rows="3" data-i18n-placeholder="form.messagePh" placeholder="Décrivez votre projet..." class="field resize-none"></textarea>
         </div>
 
         <button type="submit"
@@ -554,10 +552,10 @@
 </main>
 
 <!-- ============ FOOTER ============ -->
-<footer class="relative z-10 px-6 py-10 border-t border-white/10">
+<footer class="relative z-10 px-6 py-8 border-t border-white/10">
   <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/55">
     <p>&copy; <span id="year"></span> Guillaume de Hollain</p>
-    <a href="#top" data-scroll data-i18n="footer.top" class="link-underline hover:text-white transition-colors">Retour en haut ↑</a>
+    <a href="#top" data-scroll class="link-underline inline-flex items-center gap-1.5 hover:text-white transition-colors"><span data-i18n="footer.top">Retour en haut</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
   </div>
 </footer>
 
@@ -570,7 +568,7 @@
       'header.badge': 'Disponible pour de nouveaux projets',
       'header.cta': 'Demander un devis',
       'hero.label': 'Développeur web freelance',
-      'hero.title': 'Je code votre site web<br class="hidden sm:block"> sur mesure',
+      'hero.title': 'Je code votre site web<br class="hidden sm:block lg:hidden"> sur mesure',
       'hero.subtitle': 'Sites vitrines, plateformes avec back-office et automatisation IA — conçus et développés avec des technologies modernes. Flexible et réactif, je peux livrer un site fonctionnel en 72h.',
       'hero.badge': 'Livraison possible en 72h',
       'hero.cta': 'Demander un devis',
@@ -583,16 +581,16 @@
       'services.label': 'Services',
       'services.title': 'Ce que je construis pour vous',
       'services.s1.title': 'Sites vitrines multilingues',
-      'services.s1.desc': 'Présenter votre activité, vos produits ou votre lieu en plusieurs langues, avec un formulaire de contact ou de demande de devis.',
+      'services.s1.desc': "Votre activité en plusieurs langues, avec contact ou demande de devis.",
       'services.s2.title': 'Réservation et demandes en ligne',
-      'services.s2.desc': 'Calendrier de disponibilités, demande de réservation, formulaire de devis : ce qu’il faut à vos visiteurs pour passer à l’action.',
+      'services.s2.desc': "Calendrier, réservation, formulaire de devis.",
       'services.s3.title': 'Back-office et espaces privés',
-      'services.s3.desc': 'Un espace réservé à vos membres ou clients, et une interface pour gérer vous-même calendrier, photos, documents et inscriptions.',
+      'services.s3.desc': "Espace membres ou clients, contenu géré par vous.",
       'services.s4.title': 'Applications web et automatisation',
-      'services.s4.desc': 'Applications installables sur téléphone, et automatisations avec Claude et n8n pour retirer les tâches répétitives de votre quotidien.',
+      'services.s4.desc': "Apps installables sur téléphone, automatisations Claude et n8n.",
       'work.label': 'Réalisations',
       'work.title': 'Des projets concrets, livrés avec soin',
-      'work.viewSite': 'Voir le site ↗',
+      'work.viewSite': 'Voir le site',
       'work.private': 'Projet privé',
       'work.alt': 'Capture d’écran du site {name}',
       'work.terra.desc': 'Domaine privé de 50 hectares à Campanet, Mallorca. Site vitrine multilingue (ES/EN/FR/DE) et réservation.',
@@ -604,17 +602,18 @@
       'work.imagine.desc': 'Plateforme communautaire privée avec back-office : membres, calendrier, galerie, documents. Next.js, Tailwind, Supabase.',
       'about.label': 'À propos',
       'about.alt': 'Portrait de Guillaume de Hollain',
-      'about.placeholder': 'À RÉDIGER : emplacement du texte de présentation. Écrivez ici qui vous êtes et comment vous travaillez.',
+      'about.p1': "Je suis étudiant en économie à Maastricht, basé en Belgique près de Bruxelles. Je construis des sites web — j’ai commencé par les miens, un food truck que je fais tourner sur des événements et un domaine à Mallorca, puis on m’a demandé d’en faire pour d’autres.",
+      'about.p2': "Je sais donc à quoi un site doit servir : remplir un agenda, répondre à un client, faire tourner une activité. Je m’occupe de toute la chaîne — domaine, hébergement, mise en ligne — vous n’avez rien à gérer. Français, néerlandais, anglais, espagnol.",
       'process.label': 'Process',
       'process.title': 'Comment ça se passe',
       'process.step1.title': 'Cadrage',
-      'process.step1.desc': 'On définit les pages, les langues, ce que vos visiteurs doivent pouvoir faire (contacter, réserver, s’inscrire) et ce que vous voulez modifier vous-même.',
+      'process.step1.desc': "On définit pages, langues et objectifs.",
       'process.step2.title': 'Maquette',
-      'process.step2.desc': 'Je vous montre la direction visuelle (couleurs, typographie, structure des pages) avant de coder. Vous validez, ou on ajuste.',
+      'process.step2.desc': "Vous validez la direction visuelle avant le code.",
       'process.step3.title': 'Développement',
-      'process.step3.desc': 'Je construis le site : textes dans chaque langue, formulaires, réservation ou back-office si besoin, affichage soigné sur mobile comme sur ordinateur.',
+      'process.step3.desc': "Je construis le site, pour mobile et ordinateur.",
       'process.step4.title': 'Mise en ligne',
-      'process.step4.desc': 'Je publie le site, je relie votre nom de domaine, puis je teste les formulaires et l’affichage avant de vous le remettre.',
+      'process.step4.desc': "Je publie le site, relie votre nom de domaine et teste.",
       'contact.label': 'Contact',
       'contact.title': 'Discutons de votre projet',
       'contact.subtitle': 'Décrivez votre besoin, je reviens vers vous rapidement avec un devis.',
@@ -629,7 +628,7 @@
       'form.sending': 'Envoi en cours...',
       'form.success': 'Message envoyé — je reviens vers vous rapidement.',
       'form.error': 'Une erreur est survenue. Contactez-moi directement par email.',
-      'footer.top': 'Retour en haut ↑',
+      'footer.top': 'Retour en haut',
     },
     en: {
       'whatsapp.aria': 'Message me on WhatsApp',
@@ -637,7 +636,7 @@
       'header.badge': 'Available for new projects',
       'header.cta': 'Request a quote',
       'hero.label': 'Freelance web developer',
-      'hero.title': 'I build your website<br class="hidden sm:block"> tailored to you',
+      'hero.title': 'I build your website<br class="hidden sm:block lg:hidden"> tailored to you',
       'hero.subtitle': 'Showcase sites, platforms with a back-office, and AI automation — designed and built with modern technology. Flexible and responsive, I can deliver a working site in 72h.',
       'hero.badge': 'Delivery possible in 72h',
       'hero.cta': 'Request a quote',
@@ -650,16 +649,16 @@
       'services.label': 'Services',
       'services.title': 'What I build for you',
       'services.s1.title': 'Multilingual showcase sites',
-      'services.s1.desc': 'Present your business, your products or your venue in several languages, with a contact or quote-request form.',
+      'services.s1.desc': "Your business in several languages, with contact or quote requests.",
       'services.s2.title': 'Online booking and requests',
-      'services.s2.desc': 'Availability calendar, booking request, quote form: what your visitors need to take the next step.',
+      'services.s2.desc': "Calendar, booking, quote forms.",
       'services.s3.title': 'Back-office and private areas',
-      'services.s3.desc': 'A members-only or client area, and an interface to manage your own calendar, photos, documents and sign-ups.',
+      'services.s3.desc': "Member or client area, content you manage yourself.",
       'services.s4.title': 'Web apps and automation',
-      'services.s4.desc': 'Apps you can install on a phone, and automations with Claude and n8n to take repetitive tasks out of your day.',
+      'services.s4.desc': "Installable phone apps, Claude and n8n automations.",
       'work.label': 'Work',
       'work.title': 'Real projects, delivered with care',
-      'work.viewSite': 'View the site ↗',
+      'work.viewSite': 'View the site',
       'work.private': 'Private project',
       'work.alt': 'Screenshot of the {name} website',
       'work.terra.desc': 'Private 50-hectare estate in Campanet, Mallorca. Multilingual showcase site (ES/EN/FR/DE) with booking.',
@@ -671,17 +670,18 @@
       'work.imagine.desc': 'Private community platform with a back-office: members, calendar, gallery, documents. Next.js, Tailwind, Supabase.',
       'about.label': 'About',
       'about.alt': 'Portrait of Guillaume de Hollain',
-      'about.placeholder': 'TO WRITE: placeholder for the introduction text. Write here who you are and how you work.',
+      'about.p1': "I’m an economics student in Maastricht, based in Belgium near Brussels. I build websites — I started with my own, a food truck I run at events and an estate in Mallorca, then people asked me to build theirs.",
+      'about.p2': "So I know what a site is for: filling a calendar, answering a client, keeping a business running. I handle the whole chain — domain, hosting, going live — you have nothing to manage. French, Dutch, English, Spanish.",
       'process.label': 'Process',
       'process.title': 'How it works',
       'process.step1.title': 'Scoping',
-      'process.step1.desc': 'We define the pages, the languages, what your visitors should be able to do (get in touch, book, sign up) and what you want to edit yourself.',
+      'process.step1.desc': "We define pages, languages and goals.",
       'process.step2.title': 'Mockup',
-      'process.step2.desc': 'I show you the visual direction (colours, typography, page structure) before writing any code. You approve it, or we adjust.',
+      'process.step2.desc': "You approve the visual direction before any code.",
       'process.step3.title': 'Development',
-      'process.step3.desc': 'I build the site: text in every language, forms, booking or back-office where needed, and a clean display on mobile and desktop.',
+      'process.step3.desc': "I build the site for mobile and desktop.",
       'process.step4.title': 'Launch',
-      'process.step4.desc': 'I publish the site, connect your domain name, then test the forms and the display before handing it over.',
+      'process.step4.desc': "I publish the site, connect your domain name and test.",
       'contact.label': 'Contact',
       'contact.title': "Let's talk about your project",
       'contact.subtitle': "Describe what you need, and I'll get back to you quickly with a quote.",
@@ -696,7 +696,7 @@
       'form.sending': 'Sending...',
       'form.success': "Message sent — I'll get back to you shortly.",
       'form.error': 'Something went wrong. Please contact me directly by email.',
-      'footer.top': 'Back to top ↑',
+      'footer.top': 'Back to top',
     },
     nl: {
       'whatsapp.aria': 'Stuur mij een bericht op WhatsApp',
@@ -704,7 +704,7 @@
       'header.badge': 'Beschikbaar voor nieuwe projecten',
       'header.cta': 'Offerte aanvragen',
       'hero.label': 'Freelance webontwikkelaar',
-      'hero.title': 'Ik bouw uw website<br class="hidden sm:block"> op maat',
+      'hero.title': 'Ik bouw uw website<br class="hidden sm:block lg:hidden"> op maat',
       'hero.subtitle': 'Vitrinesites, platformen met back-office en AI-automatisering — ontworpen en gebouwd met moderne technologie. Flexibel en snel, ik kan een werkende site binnen 72u leveren.',
       'hero.badge': 'Levering mogelijk binnen 72u',
       'hero.cta': 'Offerte aanvragen',
@@ -717,16 +717,16 @@
       'services.label': 'Diensten',
       'services.title': 'Wat ik voor u bouw',
       'services.s1.title': 'Meertalige vitrinesites',
-      'services.s1.desc': 'Uw activiteit, producten of locatie voorstellen in meerdere talen, met een contact- of offerteaanvraagformulier.',
+      'services.s1.desc': "Uw activiteit in meerdere talen, met contact of offerteaanvraag.",
       'services.s2.title': 'Online reservaties en aanvragen',
-      'services.s2.desc': 'Beschikbaarheidskalender, reservatieaanvraag, offerteformulier: wat uw bezoekers nodig hebben om de stap te zetten.',
+      'services.s2.desc': "Kalender, reservatie, offerteformulier.",
       'services.s3.title': 'Back-office en privéruimtes',
-      'services.s3.desc': 'Een ruimte voorbehouden aan uw leden of klanten, en een interface om zelf kalender, foto’s, documenten en inschrijvingen te beheren.',
+      'services.s3.desc': "Leden- of klantenruimte, inhoud door uzelf beheerd.",
       'services.s4.title': 'Webapps en automatisering',
-      'services.s4.desc': 'Apps die u op uw telefoon kunt installeren, en automatiseringen met Claude en n8n om herhalende taken uit uw dag te halen.',
+      'services.s4.desc': "Installeerbare telefoon-apps, automatiseringen met Claude en n8n.",
       'work.label': 'Realisaties',
       'work.title': 'Concrete projecten, met zorg opgeleverd',
-      'work.viewSite': 'Bekijk de site ↗',
+      'work.viewSite': 'Bekijk de site',
       'work.private': 'Privéproject',
       'work.alt': 'Schermafbeelding van de website {name}',
       'work.terra.desc': 'Privédomein van 50 hectare in Campanet, Mallorca. Meertalige vitrinesite (ES/EN/FR/DE) met reservaties.',
@@ -738,17 +738,18 @@
       'work.imagine.desc': 'Privé communityplatform met back-office: leden, kalender, galerij, documenten. Next.js, Tailwind, Supabase.',
       'about.label': 'Over mij',
       'about.alt': 'Portret van Guillaume de Hollain',
-      'about.placeholder': 'TE SCHRIJVEN: plaats voor de voorstellingstekst. Schrijf hier wie u bent en hoe u werkt.',
+      'about.p1': "Ik studeer economie in Maastricht en woon in België, vlak bij Brussel. Ik bouw websites — ik begon met die van mezelf, een foodtruck die ik op evenementen laat draaien en een landgoed op Mallorca, en daarna vroegen anderen me hetzelfde te doen.",
+      'about.p2': "Ik weet dus waar een site voor dient: een agenda vullen, een klant antwoorden, een zaak draaiende houden. Ik regel de hele keten — domein, hosting, livegang — u hoeft niets te beheren. Frans, Nederlands, Engels, Spaans.",
       'process.label': 'Verloop',
       'process.title': 'Hoe het werkt',
       'process.step1.title': 'Afbakening',
-      'process.step1.desc': 'We bepalen de pagina’s, de talen, wat uw bezoekers moeten kunnen doen (contact opnemen, reserveren, inschrijven) en wat u zelf wilt aanpassen.',
+      'process.step1.desc': "We bepalen pagina’s, talen en doelen.",
       'process.step2.title': 'Ontwerp',
-      'process.step2.desc': 'Ik toon u de visuele richting (kleuren, typografie, paginastructuur) voordat ik code schrijf. U keurt goed, of we passen aan.',
+      'process.step2.desc': "U keurt de visuele richting goed vóór de code.",
       'process.step3.title': 'Ontwikkeling',
-      'process.step3.desc': 'Ik bouw de site: teksten in elke taal, formulieren, reservatie of back-office waar nodig, en een verzorgde weergave op mobiel en computer.',
+      'process.step3.desc': "Ik bouw de site voor mobiel en computer.",
       'process.step4.title': 'Lancering',
-      'process.step4.desc': 'Ik publiceer de site, koppel uw domeinnaam en test de formulieren en de weergave voordat ik hem aan u overhandig.',
+      'process.step4.desc': "Ik publiceer de site, koppel uw domeinnaam en test.",
       'contact.label': 'Contact',
       'contact.title': 'Laten we over uw project praten',
       'contact.subtitle': 'Beschrijf uw behoefte, ik kom snel bij u terug met een offerte.',
@@ -763,7 +764,7 @@
       'form.sending': 'Verzenden...',
       'form.success': 'Bericht verzonden — ik neem snel contact met u op.',
       'form.error': 'Er is iets misgegaan. Neem rechtstreeks contact met mij op via e-mail.',
-      'footer.top': 'Terug naar boven ↑',
+      'footer.top': 'Terug naar boven',
     },
   };
 
@@ -837,48 +838,31 @@
 
   const isDesktop = window.innerWidth > 768;
 
+  // Hero: code typed out, then the finished site appears. Plays once, with no pin,
+  // so the next section is one scroll away.
+  const heroTl = gsap.timeline({ paused: true });
   if (isDesktop) {
-    // Hero: code typed out, then the finished site appears. Pinned & scrubbed.
-    // pin:true with pinSpacing:true (default) auto-reserves exactly the scroll distance
-    // declared in `end` — no manual section height, so nothing can drift out of sync
-    // and Services can never render underneath a still-pinned Hero.
-    const heroTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: '+=2600',
-        scrub: 0.4,
-        pin: '#heroPin',
-        pinSpacing: true,
-        anticipatePin: 1,
-      }
-    });
-
-    heroTl.to('.code-line', { clipPath: 'inset(0 0% 0 0)', stagger: 0.13, duration: 0.35, ease: 'none' }, 0);
-
     heroTl
-      .to('#codeWindow', { opacity: 0, scale: 0.94, filter: 'blur(8px)', duration: 0.5, ease: 'power1.inOut' }, 1.75)
-      .fromTo('#siteWindow', { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power1.inOut' }, 1.75)
+      .to('.code-line', { clipPath: 'inset(0 0% 0 0)', stagger: 0.09, duration: 0.25, ease: 'none' }, 0)
+      .to('#codeWindow', { opacity: 0, scale: 0.94, filter: 'blur(8px)', duration: 0.5, ease: 'power1.inOut' }, '+=0.4')
+      .fromTo('#siteWindow', { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power1.inOut' }, '<')
       // the page "loads" top to bottom inside the browser frame
-      .fromTo('.site-shot', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 0.8, ease: 'none' }, 2.25);
+      .fromTo('.site-shot', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 0.7, ease: 'none' }, '-=0.1');
   } else {
-    // Mobile: no pin (the address bar showing/hiding on scroll throws off ScrollTrigger's
-    // pinned-height math). Play the same code -> site beat once, when the Hero is in view.
-    const heroTlMobile = gsap.timeline({ paused: true });
-    heroTlMobile
+    // Mobile: fewer simultaneous tweens (no scale/blur) to stay smooth on low/mid-range phones.
+    heroTl
       .to('.code-line', { clipPath: 'inset(0 0% 0 0)', stagger: 0.08, duration: 0.25, ease: 'none' }, 0)
       .to('#codeWindow', { opacity: 0, duration: 0.4, ease: 'power1.inOut' }, '+=0.4')
       .fromTo('#siteWindow', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power1.inOut' }, '<')
       .fromTo('.site-shot', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 0.6, ease: 'none' }, '-=0.1');
-
-    // A manual flag guarantees the entrance plays exactly once, whether the Hero is already
-    // in view at load (onEnter wouldn't fire) or scrolled into view later.
-    let heroPlayed = false;
-    function playHeroOnce() { if (!heroPlayed) { heroPlayed = true; heroTlMobile.play(); } }
-    ScrollTrigger.create({ trigger: '#hero', start: 'top 70%', pin: false, onEnter: playHeroOnce });
-    const heroTopNow = document.getElementById('hero').getBoundingClientRect().top;
-    if (heroTopNow < window.innerHeight * 0.7) playHeroOnce();
   }
+
+  // A manual flag guarantees the entrance plays exactly once, whether the Hero is already
+  // in view at load (onEnter wouldn't fire) or scrolled into view later.
+  let heroPlayed = false;
+  function playHeroOnce() { if (!heroPlayed) { heroPlayed = true; heroTl.play(); } }
+  ScrollTrigger.create({ trigger: '#hero', start: 'top 70%', onEnter: playHeroOnce });
+  if (document.getElementById('hero').getBoundingClientRect().top < window.innerHeight * 0.7) playHeroOnce();
 
   // Generic reveal-on-scroll for section headings, list rows and steps
   gsap.utils.toArray('.reveal').forEach((el) => {
